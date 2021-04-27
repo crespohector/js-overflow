@@ -9,27 +9,27 @@ module.exports = {
       {
         displayName: 'Demo-User',
         email: 'demo@user.io',
-        hashedPw: bcrypt.hashSync('password'),
+        hashedPassword: bcrypt.hashSync('password'),
       },
       {
         displayName: 'FakeUser1',
         email: faker.internet.email(),
-        hashedPw: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
       },
       {
         displayName: 'FakeUser2',
         email: faker.internet.email(),
-        hashedPw: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
       },
       {
         displayName: 'FakeUser3',
         email: faker.internet.email(),
-        hashedPw: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
       },
       {
         displayName: 'FakeUser4',
         email: faker.internet.email(),
-        hashedPw: bcrypt.hashSync(faker.internet.password()),
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
       },
     ], {})
   },
@@ -39,5 +39,13 @@ module.exports = {
     return queryInterface.bulkDelete('Users', {
       username: { [Op.in]: ['Demo-User', 'FakeUser1', 'FakeUser2', 'FakeUser3', 'FakeUser4'] }
     }, {});
+  }
+    /*
+      Add reverting commands here.
+      Return a promise to correctly handle asynchronicity.
+
+      Example:
+      return queryInterface.bulkDelete('People', null, {});
+    */
   }
 };

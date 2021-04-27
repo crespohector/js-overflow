@@ -13,28 +13,19 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     questions_id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
-      references: {
-        models: {
-          tableName: 'Questions'
-        },
-        key: 'id'
-      },
+      references: { model: "Questions"},
     },
     user_id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
-      references: {
-        model: {tableName: "Users"},
-        key: 'id',
-      }
-    }
+      references: { model: "Users"}
+    },
   }, {});
   Answer.associate = function(models) {
-    Answer.hasOne(models.User, {foreignKey: 'user_id'});
-    Answer.hasOne(models.Questions, {foreignKey: 'questions_id'});
-    // associations can be defined here
+    Answer.belongsTo(models.User, {foreignKey: 'user_id'});
+    Answer.belongsTo(models.Question, {foreignKey: 'questions_id'});
   };
   return Answer;
 };
