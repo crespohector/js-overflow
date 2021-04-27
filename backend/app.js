@@ -1,5 +1,3 @@
-// created to set up the EXPRESS application
-
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -8,23 +6,23 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { environment } = require('./config');
 const routes = require('./routes');
-const { ValidationError } = require('sequelize');           // for the sequelize validation error handler
+const { ValidationError } = require('sequelize');   // for the sequelize validation error handler
 
-const isProduction = environment === 'production';          // created to check if the ENVIRONMENT KEY is in production or not.
+const isProduction = environment === 'production';  // created to check if the ENVIRONMENT KEY is in production or not.
 
 
-const app = express();              // initialize the express app.
+const app = express();     // initialize the express app.
 // const router = express.Router();
 
-app.use(morgan('dev'));             // connect to the morgan middleware to log info about requests and responses.
-app.use(cookieParser());            // cookie-parser middleware for parsing cookies
-app.use(express.json());            // express middleware to parse JSON body of requests with *"Content-Type of "application/json"*
+app.use(morgan('dev'));    // connect to the morgan middleware to log info about requests and responses.
+app.use(cookieParser());   // cookie-parser middleware for parsing cookies
+app.use(express.json());   // express middleware to parse JSON body of requests with *"Content-Type of "application/json"*
 
 
 
 // Set the _csrf token and create req.csrfToken method ---------------------------------------------------------------------------------------
-app.use(                                    // NEED CSURF before routes (line 43)
-  csurf({                                                 // will add a _csrf cookie that is HTTP - ONLY (can't be read by JS)
+app.use(           // NEED CSURF before routes
+  csurf({              // will add a _csrf cookie that is HTTP - ONLY (can't be read by JS)
     cookie: {
       secure: isProduction,
       sameSite: isProduction && "Lax",
@@ -41,8 +39,10 @@ It also adds a method on all requests (req.csrfToken) that will be set to anothe
 */
 
 
-app.use(routes);             // connect all the routes
+/* All the URL's of the routes in the api router
+  will be prefixed with /api. */
 
+app.use(routes);        // connect all the routes
 
 /* -------------------------------------------------------------------------------------------------------------------------
 Catch unhandled requests, requests that don't match any of the routes that were defined above
@@ -59,7 +59,6 @@ app.use((_req, _res, next) => {
 });
 
 
-
 // Process sequelize errors ----------------------------------------------------------------------------------------------------
 /*    if an error here, there was an error that was created for a sequelize database validation error.
     the additional keys of title string and errors array will be ADDED to the error and passed into the next error handling middleware.
@@ -73,7 +72,6 @@ app.use((err, _req, _res, next) => {
   }
   next(err);
 });
-
 
 
 // Error formatter ---------------------------------------------------------------------------------------------------------------
@@ -94,14 +92,7 @@ app.use((err, _req, res, _next) => {
 });
 
 
-
-
-
-
-
-
-
-
+//--------------------------------------------------------------------------
 // Security Middleware
 if (!isProduction) {                    // if not in production mode
   // enable cors only in development

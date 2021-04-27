@@ -6,7 +6,7 @@
 
 const express = require('express');
 const router = express.Router();
-const apiRouter = require('./api');                 // import and connecting router
+const apiRouter = require('./api');      // import and connecting router
 
 router.use('/api', apiRouter);    // using the api router and routes will start with /api/ from here
 

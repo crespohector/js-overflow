@@ -17,11 +17,7 @@ module.exports = {
     seederStorage: 'sequelize',
   },
   production: {
-<<<<<<< HEAD
     use_env_variable: 'DATABASE_URL',
-=======
-    use_env_variable: 'DATABASE_URL',    // when this app is deployed to production, the database will read from this / a URL instead of the username, pw and DB name
->>>>>>> c2957eb2bcfc6c5ef808b7fa95c082aab7ec495e
     dialect: 'postgres',
     seederStorage: 'sequelize',
     dialectOptions: {
