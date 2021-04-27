@@ -10,7 +10,6 @@ const { handleValidationErrors } = require('../../utils/validation');         //
 
 const router = express.Router();
 
-
 // middleware called validateSignup that will check the keys and validate the email, username, and password.
 
 /* The validateSignup middleware is composed of the check and handleValidationErrors middleware.
@@ -37,12 +36,10 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
-
 /*
 Add the POST /api/users route to the router adding an asynchronous route handler.
 In the route handler, call the signup static method on the User model.If the user is successfully created, then call setTokenCookie and return a JSON response with the user information.
 If the creation of the user is unsuccessful, then a Sequelize Validation error will be passed onto the next error-handling middleware.
-
 */
 
 // Sign up
@@ -60,12 +57,6 @@ router.post(
     });
   }),
 );
-
-
-
-
-
-
 
 
 module.exports = router;

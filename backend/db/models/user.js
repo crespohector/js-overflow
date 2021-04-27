@@ -1,6 +1,7 @@
 'use strict';
 
 const { Validator } = require('sequelize');
+const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
@@ -19,20 +20,75 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3,256]
+        len: [3, 256]
       },
     },
     hashedPw: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [60,60],
+        len: [60, 60],
       },
     },
-  }, {});
-  User.associate = function(models) {
-    User.hasMany(models.Question, {foreignKey: 'user_id'});
-    User.hasMany(models.Answer, {foreignKey: 'user_id'});
+  },
+  {
+    defaultScope: {
+      attributes: {
+        exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt'],
+      },
+    },
+    scopes: {
+      currentUser: {
+        attributes: { exclude: ['hashedPassword'] },
+      },
+      loginUser: {
+        attributes: {},
+      },
+    },
+  });
+
+  User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function
+    const { id, displayName, email } = this; // context will be the User instance
+    return { id, displayName, email };
+  };
+
+  User.prototype.validatePassword = function (password) {
+    return bcrypt.compareSync(password, this.hashedPw.toString());
+  };
+
+  User.getCurrentUserById = async function (id) {
+    return await User.scope('currentUser').findByPk(id);
+  };
+
+  User.login = async function ({ credential, password }) {
+    const { Op } = require('sequelize');
+    const user = await User.scope('loginUser').findOne({
+      where: {
+        [Op.or]: {
+          displayName: credential,
+          email: credential,
+        },
+      },
+    });
+    if (user && user.validatePassword(password)) {
+      return await User.scope('currentUser').findByPk(user.id);
+    }
+  };
+
+  User.signup = async function ({ username, email, password }) {
+    const hashedPassword = bcrypt.hashSync(password);
+    const user = await User.create({
+      displayName: username,
+      email,
+      hashedPw,
+    });
+    return await User.scope('currentUser').findByPk(user.id);
+  };
+
+
+  User.associate = function (models) {
+    User.hasMany(models.Question, { foreignKey: 'user_id' });
+    User.hasMany(models.Answer, { foreignKey: 'user_id' });
   };
   return User;
 };
