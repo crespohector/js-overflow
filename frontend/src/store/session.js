@@ -36,20 +36,6 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
-
-const setUser = (user) => {
-  return {
-    type: SET_USER,
-    payload: user,
-  };
-};
-
-const removeUser = () => {
-  return {
-    type: REMOVE_USER,
-  };
-};
-
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
   const response = await csrfFetch('/api/session', {
@@ -63,6 +49,21 @@ export const login = (user) => async (dispatch) => {
   dispatch(setUser(data.user));
   return response;
 };
+
+//-------------------------------------------------------------------------
+const setUser = (user) => {
+  return {
+    type: SET_USER,
+    payload: user,
+  };
+};
+
+const removeUser = () => {
+  return {
+    type: REMOVE_USER,
+  };
+};
+
 
 const initialState = { user: null };
 

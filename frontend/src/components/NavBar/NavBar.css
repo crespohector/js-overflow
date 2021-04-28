@@ -1,0 +1,16 @@
+
+.navbar-main-container {
+    border: 1px solid black;
+}
+
+
+
+
+
+.navbar-menu {
+
+}
+
+.navbar-menu:hover {
+    cursor: pointer;
+}

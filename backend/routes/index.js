@@ -1,8 +1,6 @@
 // backend/routes/index.js
 
-
 // In this file we are creating an express ROUTER, a test Route and export the router at the bottom
-
 
 const express = require('express');
 const router = express.Router();
@@ -10,9 +8,7 @@ const apiRouter = require('./api');      // import and connecting router
 
 router.use('/api', apiRouter);    // using the api router and routes will start with /api/ from here
 
-
 /* ADDED  IN WHEN WORKING ON FRONT END:---------------------------------------------------------------------------------------------
-
 */
 
 // Static routes
@@ -54,15 +50,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
-
-
 // TEST ROUTE: --------------------------------------------------------------------------------------------------------------------------------------
-router.get('/hello/world', function(req, res){
-  res.cookie('XSRF-TOKEN', req.csrfToken());          // setting a cookie on the response with the name of XSRF-TOKEN with VALUE of req.csrfToken
-  res.send('Hello World!');                           //  sending txt 'Hello World' as the response body
-});
-
-
+// router.get('/hello/world', function(req, res){
+//   res.cookie('XSRF-TOKEN', req.csrfToken());          // setting a cookie on the response with the name of XSRF-TOKEN with VALUE of req.csrfToken
+//   res.send('Hello World!');                           //  sending txt 'Hello World' as the response body
+// });
 
 
 

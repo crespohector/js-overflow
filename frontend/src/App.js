@@ -5,25 +5,32 @@ import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
-import Navigation from "./components/Navigation";
+//--------------------------------------------------------------
+import NoMatch from './components/NoMatch';
+import SplashPage from './components/SplashPage';
 
 function App() {
   const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false); //Do I have to wait until user is loaded? What happens if User is not loaded?
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <SplashPage isLoaded={isLoaded} />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route>
+            <NoMatch/>
           </Route>
         </Switch>
       )}
