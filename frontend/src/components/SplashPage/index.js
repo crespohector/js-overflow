@@ -6,15 +6,17 @@ import { Redirect } from 'react-router-dom';
 import './SplashPage.css';
 //----------------------------------------------------
 import NavBar from '../NavBar';
+import SplashPageBodyContent from '../SplashPageBodyContent';
 
-function SplashPage({isLoaded}) {
+function SplashPage({ isLoaded }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
 
   return (
-      <>
-        <NavBar isLoaded={isLoaded} />
-      </>
+    <>
+      <NavBar isLoaded={isLoaded} />
+      <SplashPageBodyContent />
+    </>
   );
 }
 

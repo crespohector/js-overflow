@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 //--------------------------------------------------------------
 import NoMatch from './components/NoMatch';
 import SplashPage from './components/SplashPage';
+import Questions from './components/Questions';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/questions">
+            <Questions />
           </Route>
           <Route>
             <NoMatch/>
