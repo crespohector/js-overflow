@@ -25,12 +25,13 @@ export const getQuestions = () => async dispatch => {
 }
 
 export const addQuestions = (question) => async dispatch => {
-    const {title, comment} = question;
+    // console.log("questions store location. Question: ", question)
+    const {title, comment, user_id} = question;
     const response = await csrfFetch('/api/questions', {
         method: "POST",
-        body: JSON.stringify({title, comment})
+        body: JSON.stringify({title, comment, user_id})
     });
-    const data = response.json();
+    const data = await response.json();
     console.log("data: ", data);
     dispatch(addOneQuestion(data));
     return response;
@@ -47,10 +48,9 @@ const questionsReducer = (state = {}, action) => {
                 newState[question.id] = question;
             });
             return newState;
-        // case ADD_QUESTIONS:
-            // newState = {...state};
-            // return
-
+        case ADD_QUESTIONS:
+            newState = {...state};
+            newState[action.data.question.id] = action.data.question;
         default:
             return state;
     }
