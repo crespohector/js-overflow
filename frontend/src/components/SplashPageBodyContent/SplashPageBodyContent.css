@@ -1,19 +1,37 @@
 /* main content container */
 .body-content-container {
+    display: flex;
+    background-image: url('http://localhost:3000/img/simple_dark_bg.png');
+    resize: both;
+    background-size: contain;
+    background-color: rgb(39, 39, 39);
+    max-width: 2000px;
+    min-height: 800px;
+    /* border: 2px solid red; */
+    margin: 0px 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
 
+/* content container */
+.body-content-container_text {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    max-height: 400px;
+    /* border: 1px solid blue; */
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    overflow: visible;
+    margin: auto;
+    text-align: center;
 }
 
 
-
-
-
-/* content container */
-.content-container {
-    background-image: url('http://localhost:3000/img/simple_dark_bg.png');
-    background-size: contain;
-    width: 160px;
-    height: 160px;
-    border: 2px solid red;
-    color: black;
-    resize: both;
+/* text-2 */
+.text_2 {
+    color: #f3e11d;
+    font-weight: 600;
 }

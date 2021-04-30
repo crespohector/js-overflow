@@ -9,10 +9,15 @@ import * as sessionActions from "./store/session";
 import NoMatch from './components/NoMatch';
 import SplashPage from './components/SplashPage';
 import Questions from './components/Questions';
+import QuestionID from './components/QuestionID';
+import AskQuestion from "./components/AskQuestion";
+
 
 function App() {
+  
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false); //Do I have to wait until user is loaded? What happens if User is not loaded?
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -30,11 +35,17 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/questions">
+          <Route exact path="/questions">
             <Questions />
           </Route>
+          <Route  exact path="/questions/ask">
+            <AskQuestion />
+          </Route>
+          <Route  exact path="/questions/:questionId">
+            <QuestionID />
+          </Route>
           <Route>
-            <NoMatch/>
+            <NoMatch />
           </Route>
         </Switch>
       )}

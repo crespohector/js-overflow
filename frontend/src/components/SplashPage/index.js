@@ -1,22 +1,24 @@
 // frontend/src/components/SplashPage/index.js
-import React, { useState } from 'react';
-import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
 import './SplashPage.css';
 //----------------------------------------------------
 import NavBar from '../NavBar';
 import SplashPageBodyContent from '../SplashPageBodyContent';
+import Footer from "../Footer";
+import Sticky from 'react-sticky-el';
 
 function SplashPage({ isLoaded }) {
-  const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
+  // const dispatch = useDispatch();
+  // const sessionUser = useSelector(state => state.session.user);
 
   return (
-    <>
-      <NavBar isLoaded={isLoaded} />
+    <div className="body-wrapper">
+      <Sticky>
+        <NavBar isLoaded={isLoaded} />
+      </Sticky>
       <SplashPageBodyContent />
-    </>
+      <Footer />
+    </div>
   );
 }
 

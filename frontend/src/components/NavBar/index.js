@@ -1,5 +1,6 @@
 // frontend/src/components/NavBar/index.js
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom'
 import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -7,17 +8,46 @@ import './NavBar.css';
 
 function NavBar({ isLoaded }) {
   const [show, setShow] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
 
   const changeMenuIcon = (e) => {
-    if (show === false) {
-      setShow(true);
+    if (show) {
+      setShow(false);
     }
     else {
-      setShow(false);
+      setShow(true);
     }
     e.currentTarget.classList.toggle('change');
   }
 
+  // useEffect(() => {
+  //   if (!show) return;
+
+  //   const closeMenu = () => {
+  //     const div = document.getElementById('menu');
+  //     div.classList.toggle('change');
+  //     setShow(false);
+  //   };
+  //   document.addEventListener('click', closeMenu);
+  //   return () => {
+  //     document.removeEventListener("click", closeMenu);
+  //   }
+  // }, [show]);
+
+
+  let sessionLinks;
+  if (sessionUser) {
+    sessionLinks = (
+      <ProfileButton user={sessionUser} />
+    );
+  } else {
+    sessionLinks = (
+      <>
+        <NavLink className="login" to='/login'>Log in</NavLink>
+        <NavLink className="signup" to='/signup'>Sign up</NavLink>
+      </>
+    );
+  }
 
   function refreshPage() {
     window.location.reload();
@@ -25,13 +55,13 @@ function NavBar({ isLoaded }) {
 
   return (
     <div className="navbar-main-container">
-      <div className="navbar-menu" onClick={changeMenuIcon}>
+      <div id="menu" className="navbar-menu" onClick={changeMenuIcon}>
         <div className="bar1"></div>
         <div className="bar2"></div>
         <div className="bar3"></div>
       </div>
 
-      {show === true ? <div className="navbar-menu_links">
+      {show ? <div className="navbar-menu_links">
         <NavLink className="home" to="/" onClick={refreshPage}>Home</NavLink>
         <NavLink className="questions" to="/questions">Questions</NavLink>
       </div> : null}
@@ -41,11 +71,10 @@ function NavBar({ isLoaded }) {
         <span className="navbar-img-text">overflow</span>
       </div>
 
-      <div>
-        <NavLink className="login" to='/login'>Log in</NavLink>
-        <NavLink className="signup" to='/signup'>Sign in</NavLink>
+      <div className='navbar-user-container'>
+        {isLoaded && sessionLinks}
       </div>
-      
+
     </div>
   );
 }

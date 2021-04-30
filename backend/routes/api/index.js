@@ -2,10 +2,11 @@
 const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const questionsRouter = require('./questions.js');
 
 router.use('/session', sessionRouter);   // connects the session page to here
 router.use('/users', usersRouter);       // connects the users page to here
-
+router.use('/questions', questionsRouter);
 
 // // POST /api/test
 router.post('/test', function(req, res) {         // created a test route and api test route added to the router

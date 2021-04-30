@@ -1,18 +1,21 @@
 
 .navbar-main-container {
-    border: 1px solid black;
-    border-bottom: 1px solid rgb(212, 210, 210);
+    /* border: 1px solid black; */
+    border-bottom: 2px solid rgb(212, 210, 210);
     display: flex;
     justify-content: space-between;
     height: 50px;
-    /* padding: 5px 5px; */
+    max-width: 1800px;
+    padding: 0px 100px;
+    background-color: whitesmoke;
 }
+
 /*NavBar Menu Icon*/
 .navbar-menu {
     box-sizing: border-box;
     display: inline-block;
     position: relative;
-    margin: 5px 3px 5px 8px;
+    margin: 5px 3px 5px 20px;
 }
 
 .bar1, .bar2, .bar3 {
@@ -44,8 +47,9 @@
 .navbar-menu_links {
     border: 1px solid rgb(212, 210, 210);
     position: absolute;
-    top: 60px;
+    top: 50px;
     padding: 10px 0px;
+    background-color: whitesmoke;
 }
 
 .home {
@@ -80,7 +84,7 @@
 
 /*NavBar JS Overflow Image */
 .navbar-img-container {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display:inline-block;
     box-sizing: border-box;
     margin: 5px 3px 0px 8px;
@@ -88,6 +92,7 @@
 
 .js_logo {
     height: 40px;
+    width: 50px;
 }
 
 .navbar-img-text {
@@ -100,6 +105,11 @@
 .navbar-img-container:hover {
     background-color: rgb(224, 217, 217);
     cursor: pointer;
+}
+
+/* navbar-user-container */
+.navbar-user-container {
+    margin-right: 20px;
 }
 
 /*NavBar login */
@@ -141,4 +151,35 @@
 
 .signup:hover {
     background-color: #4092cc;
+}
+
+
+
+
+
+/*----------------------- Profile button----------------------- */
+.menu_btn {
+    border: 1px solid blue;
+    color: rgb(255, 255, 255);
+    border: 1px solid #0095ff;
+    background-color: #0095ff;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    padding: .6em;
+    margin: 5px 3px;
+    box-sizing: border-box;
+}
+
+.menu_btn:hover {
+    background-color: #4092cc;
+}
+
+
+.profile-dropdown {
+    /* border: 1px solid red; */
+    background-color: white;
+    /* list-style: none; */
 }

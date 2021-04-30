@@ -1,0 +1,68 @@
+/* Questions Main container */
+.questions-main-container {
+    max-width: 1000px;
+    min-height: 1000px;
+    /* border: 1px solid black; */
+    margin: auto;
+    background-color: whitesmoke;
+    border: 1px solid rgb(172, 172, 172);
+    border-radius: 6px;
+}
+
+
+/* Questions Head container */
+.questions-head-container {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid rgb(212, 210, 210);
+}
+
+/*  Questions Text  */
+.questions-text {
+    /* border: 1px solid black; */
+    font-size: 2em;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 5px 0px;
+}
+
+/*  Questions Home Btn  */
+.questions-home {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border: 1px solid #0095ff;
+    background-color: #0095ff;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    padding: .6em;
+    margin: 5px 40px 5px 0px;
+    box-sizing: border-box;
+}
+
+/*  ask-question  */
+.ask-question {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border: 1px solid #0095ff;
+    background-color: #0095ff;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    padding: .6em;
+    margin: 5px 0px;
+    box-sizing: border-box;
+}
+
+
+/*  Questions Body container  */
+.questions-body-container {
+    /* border: 1px solid blue; */
+    margin-top: 20px;
+}
