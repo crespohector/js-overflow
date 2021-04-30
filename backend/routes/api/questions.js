@@ -13,18 +13,16 @@ router.get('/', asyncHandler(async function (req, res) {
   return res.json(questions)
 }))
 
-router.post('/', asyncHandler(async function (req,res) {
-  console.log(req.body);
-  const {title, comment, user_id} = req.body;
-
+router.post('/', asyncHandler(async function (req, res) {
+  // console.log("-------Request.body-------: ", req.body);
+  const { title, comment, user_id } = req.body;
 
   const question = await Question.create({
     title,
-    question,
+    comment,
     user_id
   });
-
-  return res.json({});
+  return res.json({question});
 }));
 
 
