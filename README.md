@@ -19,8 +19,7 @@ A clone of stackoverflow.com with a focus on the topics of JavaScript. Users are
   * Logged in users have the ability to post code snippets.
   
 ## TECHNOLOGIES USED
-  * React
-  * Redux
+  * React-Redux
   * Javascript
   * Express
   * Sequelize
