@@ -11,10 +11,11 @@ import SplashPage from './components/SplashPage';
 import Questions from './components/Questions';
 import QuestionID from './components/QuestionID';
 import AskQuestion from "./components/AskQuestion";
+import ProfilePage from "./components/ProfilePage";
 
 
 function App() {
-  
+
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false); //Do I have to wait until user is loaded? What happens if User is not loaded?
 
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route  exact path="/questions/:questionId">
             <QuestionID />
+          </Route>
+          <Route exact path="/users/:userId">
+            <ProfilePage />
           </Route>
           <Route>
             <NoMatch />

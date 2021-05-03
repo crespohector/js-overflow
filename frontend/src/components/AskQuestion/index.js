@@ -15,7 +15,7 @@ function AskQuestion() {
     const user = useSelector(state => state.session.user);
 
     const onSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         const question = { title, comment, user_id: user.id };
         dispatch(addQuestions(question));
         history.push('/questions');
@@ -42,6 +42,7 @@ function AskQuestion() {
     return (
         <div className="ask_question_container">
             <form className="question-form" onSubmit={onSubmit}>
+                <h1>Ask a question! Don't be shy! 😄</h1>
                 <ul className="errors">
                     {errors.map(error => (
                         <li key={error}>{error}</li>

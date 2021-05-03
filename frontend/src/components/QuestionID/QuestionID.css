@@ -1,0 +1,97 @@
+/* Questions Main container */
+.QuestionID-main-container {
+    max-width: 1000px;
+    min-height: 1000px;
+    /* border: 1px solid black; */
+    margin: auto;
+    background-color: whitesmoke;
+    border: 1px solid rgb(172, 172, 172);
+    border-radius: 6px;
+}
+
+
+/* QuestionID Head container */
+.QuestionID-head-container {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid rgb(212, 210, 210);
+}
+
+/*  QuestionID Text  */
+.QuestionID-text {
+    /* border: 1px solid black; */
+    font-size: 2em;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 5px 0px;
+}
+
+/*  QuestionID Home Btn  */
+.QuestionID-home {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border: 1px solid #0095ff;
+    background-color: #0095ff;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    padding: .6em;
+    margin: 5px 40px 5px 0px;
+    box-sizing: border-box;
+}
+
+/*  ask-question  */
+.ask-question {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border: 1px solid #0095ff;
+    background-color: #0095ff;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    padding: .6em;
+    margin: 5px 0px;
+    box-sizing: border-box;
+}
+
+
+/*  QuestionID Body container  */
+.QuestionID-body-container {
+    /* border: 1px solid blue; */
+    margin-top: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 1px 5px;
+}
+
+.title-question {
+    border-bottom: 1px solid black;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.comment-question {
+    border-bottom: 1px solid black;
+
+}
+
+.modal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    margin: 5% auto; /* 15% from the top and centered */
+    width: 40%;
+}

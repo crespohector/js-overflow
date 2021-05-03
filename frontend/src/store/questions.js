@@ -1,8 +1,8 @@
 // frontend/src/store/session.js
 import { csrfFetch } from './csrf';
 
-const ALL_QUESTIONS = 'questions/allQuestions';
-const ADD_QUESTIONS = 'questions/add_questions';
+const ALL_QUESTIONS = 'questions/ALL_QUESTIONS';
+const ADD_QUESTIONS = 'questions/ADD_QUESTIONS';
 
 const allQuestions = (data) => {
     return {
@@ -18,6 +18,12 @@ const addOneQuestion = (data) => {
     }
 }
 
+export const getQuestionsByUser = (userId) => async dispatch => {
+    const response = await csrfFetch(`/api/users/${userId}/questions`);
+    const data = await response.json();
+    dispatch(allQuestions(data));
+}
+
 export const getQuestions = () => async dispatch => {
     const response = await csrfFetch('/api/questions');
     const data = await response.json();
@@ -25,18 +31,15 @@ export const getQuestions = () => async dispatch => {
 }
 
 export const addQuestions = (question) => async dispatch => {
-    // console.log("questions store location. Question: ", question)
     const {title, comment, user_id} = question;
     const response = await csrfFetch('/api/questions', {
         method: "POST",
         body: JSON.stringify({title, comment, user_id})
     });
     const data = await response.json();
-    console.log("data: ", data);
     dispatch(addOneQuestion(data));
     return response;
 }
-
 
 
 const questionsReducer = (state = {}, action) => {
@@ -51,6 +54,7 @@ const questionsReducer = (state = {}, action) => {
         case ADD_QUESTIONS:
             newState = {...state};
             newState[action.data.question.id] = action.data.question;
+            return newState;
         default:
             return state;
     }

@@ -12,11 +12,13 @@ function Footer() {
                     <p className="name">Hector Crespo</p>
                 </div>
                 <div className="profile-container_icons">
-                    <a className="github-icon" href="https://github.com/crespohector" >
+                    <a className="github-icon" href="https://github.com/crespohector/js-overflow" >
                         <i class="fab fa-github"></i>
                     </a>
+                    <a className="linkedin-icon" href="http://linkedin.com/in/hector-crespo-b0b5b019a" >
+                        <i class="fab fa-linkedin"></i>
+                    </a>
                 </div>
-                <a className="project-url" href="https://github.com/crespohector/js-overflow">Project GitHub</a>
             </div>
         </div>
     );

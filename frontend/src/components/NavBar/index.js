@@ -1,14 +1,15 @@
 // frontend/src/components/NavBar/index.js
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom'
-import { NavLink, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import * as sessionActions from '../../store/session';
 import './NavBar.css';
 
 function NavBar({ isLoaded }) {
   const [show, setShow] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
 
   const changeMenuIcon = (e) => {
     if (show) {
@@ -19,6 +20,12 @@ function NavBar({ isLoaded }) {
     }
     e.currentTarget.classList.toggle('change');
   }
+
+  const loginDemoUser = () => {
+    const credential = "Demo-User";
+    const password = "password";
+    dispatch(sessionActions.login({ credential, password }))
+}
 
   // useEffect(() => {
   //   if (!show) return;
@@ -34,7 +41,6 @@ function NavBar({ isLoaded }) {
   //   }
   // }, [show]);
 
-
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -43,6 +49,7 @@ function NavBar({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
+        <button className="demo_user" onClick={loginDemoUser}>Demo User</button>
         <NavLink className="login" to='/login'>Log in</NavLink>
         <NavLink className="signup" to='/signup'>Sign up</NavLink>
       </>

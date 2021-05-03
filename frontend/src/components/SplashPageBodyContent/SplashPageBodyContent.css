@@ -19,8 +19,8 @@
     display: flex;
     flex-direction: column;
     max-width: 400px;
-    max-height: 400px;
-    /* border: 1px solid blue; */
+    /* max-height: 400px; */
+    /* border: 1px solid gray; */
     color: whitesmoke;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2em;
@@ -33,5 +33,20 @@
 /* text-2 */
 .text_2 {
     color: #f3e11d;
+    font-weight: 600;
+}
+
+
+.welcome_text {
+    display:block;
+    margin: auto;
+    color: #f3e11d;
+    font-size: 0.6em;
+    border-top: 1px solid darkgray;
+    padding-top: 12px;
+}
+.quotation_mark {
+    color: rgb(211, 211, 211);
+    font-size: 1em;
     font-weight: 600;
 }

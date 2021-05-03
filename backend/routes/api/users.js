@@ -4,11 +4,54 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Answer, Question } = require('../../db/models');
 const { check } = require('express-validator');                               // importing the functions that were created
 const { handleValidationErrors } = require('../../utils/validation');         // importing the functions that were created
 
 const router = express.Router();
+
+
+router.get('/:userId/answers', asyncHandler(async (req,res) => {
+  const {userId} = req.params;
+  const answers = await Answer.findAll({
+    where: {
+      user_id: userId,
+    },
+    order: [['updatedAt', 'DESC']]
+  });
+  return res.json(answers);
+}));
+
+router.get('/:userId/questions', asyncHandler(async (req,res) => {
+  const {userId} = req.params;
+  const questions = await Question.findAll({
+    where: {
+      user_id: userId,
+    },
+    order: [['updatedAt', 'DESC']]
+  })
+  return res.json(questions);
+}));
+
+router.put('/:userId/answers/:answersId', asyncHandler(async (req,res) => {
+  const {answersId} = req.params;
+  const {comment} = req.body;
+
+  const answer = await Answer.findByPk(answersId);
+
+  await answer.update({comment});
+
+  return res.json({answer});
+}))
+
+router.delete('/:userId/answers/:answersId', asyncHandler(async (req,res) => {
+  const {answersId} = req.params;
+  const answer = await Answer.findByPk(answersId);
+  //Tip: When deleting a question, rememeber to delete the answers first because the answer table is dependent on the Question table.
+
+  await answer.destroy();
+  return res.json({answersId});
+}))
 
 // middleware called validateSignup that will check the keys and validate the email, username, and password.
 

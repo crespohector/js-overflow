@@ -155,8 +155,6 @@
 
 
 
-
-
 /*----------------------- Profile button----------------------- */
 .menu_btn {
     border: 1px solid blue;
@@ -182,4 +180,44 @@
     /* border: 1px solid red; */
     background-color: white;
     /* list-style: none; */
+}
+
+
+/*---------------Demo User Btn----------------------*/
+.demo_user {
+    text-decoration: none;
+    color: #39739d;
+    background-color: #e1ecf4;
+    border: 1px solid #39739d;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    padding: .5em;
+    margin: 5px 3px;
+    box-sizing: border-box;
+}
+
+.demo_user:hover {
+    background-color: #a4c9e2;
+}
+
+/*---------------My Profile Btn----------------------*/
+.my_profile_btn {
+    text-decoration: none;
+    color: #39739d;
+    background-color: #e1ecf4;
+    border: 1px solid #39739d;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 0.8em;
+    text-align: center;
+    padding: .3em;
+    box-sizing: border-box;
+    /* cursor: default; */
+    cursor: default;
+}
+.my_profile_btn:hover {
+    background-color:rgb(226, 223, 223);
 }
