@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAnswersByUser } from '../../store/answers';
 import { getQuestionsByUser } from '../../store/questions';
+// import Footer from '../Footer';
 
 import RenameModalBtn from "./RenameModal";
 import DeleteModalBtn from './DeleteModal';
@@ -51,6 +52,7 @@ function ProfilePage() {
             <div className="profile_container-body">
                 {showAnswers && answersArr.map(answer => (
                     <div key={answer.id}>
+                        <h3>Answer</h3>
                         <RenameModalBtn answer={answer} />
                         <DeleteModalBtn answer={answer} />
                         <p>{answer.comment}</p>
@@ -58,6 +60,7 @@ function ProfilePage() {
                 ))}
                 {showQuestions && questionsArr.map(question => (
                     <div className="question" key={question.id}>
+                        <h3>Question</h3>
                         <p>{question.title}</p>
                         <p>{question.comment}</p>
                     </div>

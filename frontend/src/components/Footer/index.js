@@ -1,5 +1,4 @@
 import "./Footer.css";
-import react, { useState } from "react";
 
 function Footer() {
 
@@ -13,10 +12,10 @@ function Footer() {
                 </div>
                 <div className="profile-container_icons">
                     <a className="github-icon" href="https://github.com/crespohector/js-overflow" >
-                        <i class="fab fa-github"></i>
+                        <i className="fab fa-github"></i>
                     </a>
                     <a className="linkedin-icon" href="http://linkedin.com/in/hector-crespo-b0b5b019a" >
-                        <i class="fab fa-linkedin"></i>
+                        <i className="fab fa-linkedin"></i>
                     </a>
                 </div>
             </div>

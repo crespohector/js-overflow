@@ -8,6 +8,7 @@ import Modal from 'react-modal';
 import { useSelector, useDispatch } from 'react-redux';
 import {  getAnswers, addOneAnswer } from '../../store/answers';
 import { getQuestions } from '../../store/questions';
+// import Footer from '../Footer';
 import NavBar from "../NavBar";
 import './QuestionID.css';
 
@@ -30,6 +31,8 @@ function QuestionID() {
     const questions_id = parseInt(questionId);
     const answer = { comment, questions_id, user_id: user.id };
     dispatch(addOneAnswer(answer));
+    setComment('');
+    setModalIsOpen(false);
   }
 
   useEffect(() => {
@@ -44,7 +47,7 @@ function QuestionID() {
       errors.push("Comment field must be greater than 30 characters");
     }
     if (!user) {
-      errors.push("Please login to post a question.");
+      errors.push("Please login to post a answer.");
     }
     setErrors(errors);
   }, [comment])
@@ -78,6 +81,7 @@ function QuestionID() {
         {question ? <div className="comment-question">{question.comment}</div> : null}
         {answersArr.map(answer => (
           <div key={answer.id} className="post-answer">
+            <h3>Answer</h3>
             <p className="post-answer_comment">{answer.comment}</p>
           </div>
         ))}

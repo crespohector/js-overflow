@@ -1,6 +1,5 @@
 // frontend/src/components/SplashPageBodyContent/index.js
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import './SplashPageBodyContent.css';
 //----------------------------------------------------
 
@@ -13,8 +12,6 @@ function SplashPageBodyContent() {
                 "Engineers should help solve the hardest questions, the unknowns, where being familiar with how the product was built is essential. But we don’t want to keep answering solved problems over and over again. That’s where JS Overflow for Teams really helps.",
                 "As we started to use [JS Overflow for Teams] and saw how nice it was to have a repository of information, we started to see it spread to other teams. Our customer support team started using it, our people success team started using it, next thing we knew, we had [Slack] integrations all over the place.",
                 "What we love about JS Overflow for Teams is that it’s a very dynamic tool…there’s just so many ways to use this as a liaison between different teams and different knowledge bases."];
-    // const randNum =  Math.floor(Math.random() * (Math.floor(3) - Math.ceil(0) + 1) + Math.ceil(0));
-    const user = useSelector(state => state.session.user);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -26,7 +23,9 @@ function SplashPageBodyContent() {
         }, 2000);
         const randNum =  Math.floor(Math.random() * (Math.floor(3) - Math.ceil(0) + 1) + Math.ceil(0));
         setQuote(quotes[randNum]);
-        // return clearInterval(interval);
+        return  () => {
+            clearInterval(interval);
+        }
     }, []);
 
     return (
