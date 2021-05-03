@@ -11,7 +11,6 @@ function Questions() {
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions);
   const questionsArr = Object.values(questions);
-  // console.log("questions: ", questionsArr)
 
   useEffect(() => {
     dispatch(getQuestions());
@@ -37,14 +36,5 @@ function Questions() {
     </div>
   );
 }
-
-// comment: "I have some JavaScript code that gives this error\n );\n  var i2 = document.getElementById('i2');\n
-// createdAt: "2021-04-27T22:17:20.140Z"
-// id: 1
-// title: "Uncaught TypeError: Cannot read property \"value\" of undefined"
-// updatedAt: "2021-04-27T22:17:20.140Z"
-
-
-
 
 export default Questions;
