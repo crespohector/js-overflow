@@ -5,19 +5,22 @@ A clone of stackoverflow.com with a focus on the topics of JavaScript. Users are
 
 
 ## MVP
-  * Ability to create new users and have user login with authorization
-  * Ability to login as a demo user with full access to features
-  * Users can create, update, delete a list unique to the user  
-  * Users can create, update, delete a task to/from their list
-  * Users have access to a summary of the list or task (excercise?)
-  * Users can search through all excercises or tasks
+  * Users can create an account, log in, and log out.
+  * Users can use a demo log in to try the site.
+  * Logged out users are directed to the home page.  
+  * Logged in users can create questions.
+  * Logged in users can answer a question.
+  * Logged in users can edit and delete their own answers.
 
 ## BONUS / STRETCH GOALS
-  * Autocomplete SmartAdd of task properties
-  * Subtasks
-  * Tag system
+  * Guest and logged in users can search for specific questions.
+  * Logged in users can upvote/downvote an answer.
+  * Logged in and guest users have access to question categories.
+  * Logged in users have the ability to post code snippets.
   
 ## TECHNOLOGIES USED
+  * React
+  * Redux
   * Javascript
   * Express
   * Sequelize
@@ -27,240 +30,220 @@ A clone of stackoverflow.com with a focus on the topics of JavaScript. Users are
   
 ## DATABASE SCHEMA
 
-![dataschema](https://user-images.githubusercontent.com/73197963/114215426-94935f00-9933-11eb-84ec-4680664f90ce.JPG)
+![js_overflow_db_img](https://user-images.githubusercontent.com/76798385/116945443-a079f480-ac45-11eb-9f3a-03b7a6017fdd.png)
 
 ## Technical Showcase
 
-All of the information to display for a user is aquired, then displayed without requiring a reload to the web-page.  The information is fetched asynchronously, then used to render HTML to the user's homepage to smoothly present all information a user could have access to.
+This is the questions state in the Redux store where we use thunk actions to fetch to the API. Then, dispatching an action and updating the store using the questions reducer. 
 ```javascript
-const displayTasks = async (tasks, keepSelected = false) => {
-    if (!tasks)
-        tasks = await getTasks();
+import { csrfFetch } from './csrf';
 
-    // Update taskCount now bc they will not be filtered further before display
-    taskCount = tasks.length;
+const ALL_QUESTIONS = 'questions/ALL_QUESTIONS';
+const ADD_QUESTIONS = 'questions/ADD_QUESTIONS';
 
-    // Reset selectedTaskIds
-    if (!keepSelected)
-        selectedTaskIds = new Set();
-
-    // Sort tasks before display
-    sortTasks(tasks, selectedOrder);
-
-    const tasksHtml = tasks.map(task => {
-        let taskStr = '';
-
-        if (task.sets) taskStr += `${task.sets} `;
-        if (task.reps) taskStr += `x ${task.reps} `;
-        taskStr += task.name;
-        if (task.duration) {
-            const dur = convertSeconds(task.duration);
-            taskStr += ` for ${dur[0]}:${dur[1]}:${dur[2]}`
-        }
-
-        return `<div id=task-${task.id} class="tasks-section__task">
-                    <div class="handle">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </div>
-                    <div class='divider'></div>
-                    <input type="checkbox">
-                    <div class="card-text">${taskStr}</div>
-                </div>`;
-    });
-    tasksContainer.innerHTML = tasksHtml.join('');
-    setTasksActiveState(true, selectedTaskIds);
-};
-```
-Rendering the information without requiring a page reload means we cannot simply set event handlers for elements grabbed after the DOM content was loaded, since they could possibly be replaced or be missing from the page at a later time.  Since we cannot place event listeners on html elements rendered in the future, we used event capturing to work around this issue, and made a capture event (opposite of bubbling) on html elements that would not be manipulated by AJAX throughout the user's interaction with the site.
-```javascript
-rootDiv.addEventListener('click', async (e) => {
-    e.preventDefault()
-    let btn = e.target
-
-    //Delete a list when "delete" btn is clicked
-    if (btn.classList.contains('list__btn--delete')) {
-        let deleteId = e.target.classList[1];
-        await deleteList(deleteId);
-    }
-
-    //Display the modal when the "rename" btn is clicked
-    if (btn.classList.contains('list__btn--rename')) {
-        modalId = e.target.classList[1];
-
-        //we can reassign the buttons
-        modal_rename = document.querySelector(`#myModal-rename-${modalId}`);
-        span_rename = document.querySelector(`#close-rename-${modalId}`);
-        btnCancel_rename = document.querySelector(".list-cancel-rename");
-        modal_rename.style.display = 'block';
-    }
-    //Rename the targeted list when "save" btn is clicked
-    if (btn.classList.contains("list-rename")) {
-
-        let inputVal = document.querySelector(`#rename-input-${modalId}`)
-
-        await updateList(modalId, inputVal.value);
-        modal_rename.style.display = "none";
-        inputVal.value = "";
-    }
-
-    //Exit out of the modal when the "X" btn is clicked
-    if (btn.classList.contains("close-rename")) {
-        modal_rename.style.display = "none";
-    }
-
-    //Exit out of the modal when the "cancel" btn is clicked
-    if (btn.classList.contains("list-cancel-rename")) {
-        modal_rename.style.display = "none";
-    }
-
-    //Exit out of the modal
-    if (btn.classList.contains("modal-rename")) {
-        modal_rename.style.display = "none";
-    }
-   }, true)
-});
-```
-A robust search feature that is able to filter through all the user's task through a term to include, exclude, and also the option to search through other properties of a task, not just it's name
-
-```javascript
-const filterTasks = async (tasks, query) => {
-    const filteredTasks = tasks.filter(task => {
-        for (let prop in query) {
-            // Filter by include search term
-            // Options Obj = { term, includeNotes }
-            if (prop === 'include') {
-                let { term, includeNotes } = query[prop];
-                if (term !== null) {
-                    term = term.toLowerCase();
-                    const inName = task['name'].toLowerCase().includes(term);
-                    if (includeNotes && task.notes) {
-                        if (!inName && !task['notes'].toLowerCase().includes(term))
-                            return false;
-                    }
-                    else if (!inName)
-                        return false;
-                }
-            }
-            // Filter by exclude search term
-            // Options Obj = { term, includeNotes }
-            
-            else if (prop === 'exclude') {
-                let { term, includeNotes } = query[prop];
-                if (term !== null) {
-                    term = term.toLowerCase();
-                    const inName = task['name'].toLowerCase().includes(term);
-                    if (includeNotes && task.notes) {
-                        if (inName || task['notes'].toLowerCase().includes(term))
-                            return false;
-                    }
-                    else if (inName)
-                        return false;
-                }
-            }
-            // Filter by date property with options
-            // Options Obj = { value, comparison }
-            else if (prop === 'date' && typeof query[prop] === 'object') {
-                let { value, comparison } = query[prop];
-                if (value !== null) {
-                    let taskDate = Date.parse(task['date']);
-                    let propDate = Date.parse(value);
-
-                    if (comparison === 'isAfter') {
-                        if (taskDate >= propDate)
-                            return false;
-                    }
-                }
-            }
-            // Check if a query prop/value matches a task prop/value
-            else if (task[prop] !== query[prop])
-                return false;
-        }
-        return true;
-    });
-    return filteredTasks;
+const allQuestions = (data) => {
+    return {
+        type: ALL_QUESTIONS,
+        data
+    };
 }
 
+const addOneQuestion = (data) => {
+    return {
+        type: ADD_QUESTIONS,
+        data
+    }
+}
+
+export const getQuestionsByUser = (userId) => async dispatch => {
+    const response = await csrfFetch(`/api/users/${userId}/questions`);
+    const data = await response.json();
+    dispatch(allQuestions(data));
+}
+
+export const getQuestions = () => async dispatch => {
+    const response = await csrfFetch('/api/questions');
+    const data = await response.json();
+    dispatch(allQuestions(data));
+}
+
+export const addQuestions = (question) => async dispatch => {
+    const {title, comment, user_id} = question;
+    const response = await csrfFetch('/api/questions', {
+        method: "POST",
+        body: JSON.stringify({title, comment, user_id})
+    });
+    const data = await response.json();
+    dispatch(addOneQuestion(data));
+    return response;
+}
+
+
+const questionsReducer = (state = {}, action) => {
+    let newState;
+    switch (action.type) {
+        case ALL_QUESTIONS:
+            newState = {...state};
+            action.data.forEach(question => {
+                newState[question.id] = question;
+            });
+            return newState;
+        case ADD_QUESTIONS:
+            newState = {...state};
+            newState[action.data.question.id] = action.data.question;
+            return newState;
+        default:
+            return state;
+    }
+};
+
+export default questionsReducer;
+
 ```
-Simple, clean, and modern styling features such as subtle color changes, hover effects, and menu transitions makes the webpage engaging, while keeping it clutter free to focus on the functionality of the webpage/tool.
+
+When the user lands on the '/questions' route, it will render all the questions by dispatching a thunk action then use the useSelector to grab all 
+the questions from the redux store. 
+```javascript
+import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import {getQuestions} from '../../store/questions';
+import Footer from '../Footer';
+import NavBar from "../NavBar";
+import './Questions.css';
+
+function Questions() {
+  const dispatch = useDispatch();
+  const questions = useSelector((state) => state.questions);
+  const questionsArr = Object.values(questions);
+
+  useEffect(() => {
+    dispatch(getQuestions());
+  }, [dispatch])
+
+  return (
+    <div className="questions-main-container">
+      <div className="questions-head-container">
+        <span className="questions-text">All Questions</span>
+        <NavLink className="questions-home" to="/">Home</NavLink>
+        <NavLink className="ask-question" to="/questions/ask">Ask Question</NavLink>
+      </div>
+      <div className="questions-body-container">
+        {questionsArr.map(question => (
+          <div key={question.id} className="post-question">
+            <h3>Question</h3>
+            <NavLink className="post-question_navlink" to={`/questions/${question.id}`}>{question.title}</NavLink>
+            <p className="post-question_comment">{question.comment}</p>
+          </div>
+        ))}
+      </div>
+      <Footer />
+    </div>
+  );
+}
+
+export default Questions;
+
+
+```
+Simple, clean, and modern styling features such as subtle color changes, hover effects, and menu transitions making the webpage engaging, while keeping it clutter free to focus on the functionality of the webpage/tool.
 
 ```CSS
-/*!SLIDEOUT*/
-.summary__slideout {
-    margin-top: 5px;
-    grid-area: summary;
+/* main content container */
+.body-content-container {
     display: flex;
-    background-color: white;
-    left: 0px;
-    opacity: 1;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    transition-property: left;
-    transition-duration: 2s;
-    z-index: 0;
+    background-image: url('http://localhost:3000/img/simple_dark_bg.png');
+    resize: both;
+    background-size: contain;
+    background-color: rgb(39, 39, 39);
+    max-width: 2000px;
+    min-height: 800px;
+    margin: 0px 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
 }
 
-/*!TRANSITIONED STATE*/
-.hidden__slide {
-    margin-top: 5px;
+/* content container */
+.body-content-container_text {
     display: flex;
-    position: relative;
-    left: 1200px;
-    background-color: white;
-    z-index: -1;
-    opacity: 1;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    transition-property: left;
-    transition-duration: 2s;
+    flex-direction: column;
+    max-width: 400px;
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    overflow: visible;
+    margin: auto;
+    text-align: center;
 }
+
+
+/* text-2 */
+.text_2 {
+    color: #f3e11d;
+    font-weight: 600;
+}
+
+.welcome_text {
+    display:block;
+    margin: auto;
+    color: #f3e11d;
+    font-size: 0.6em;
+    border-top: 1px solid darkgray;
+    padding-top: 12px;
+}
+.quotation_mark {
+    color: rgb(211, 211, 211);
+    font-size: 1em;
+    font-weight: 600;
+}
+
 ```
 
-## TABLE USERS
-  * id (integer, primary key, not null)
-  * firstName (string, not null)
-  * lastName (string, not null)
-  * email (string, unique, not null)
-  * hashPW (string, not null)
-  * created_at (dateTime, not null)
-  * updated_at (dateTime, not null)
-## TABLE LISTS
-  * id (integer, primary key)
-  * userId (integer, not null, foreign key)
-  * name (string, not null)
-  * created_at (dateTime, not null)
-  * updated_at (dateTime, not null)
-## TABLE TASKS
-  * id (integer, primary key, not null)
-  * name (string, not null)
-  * complete (boolean, not null, default false)
-  * date (dateOnly)
-  * notes (text)
-  * listId (integer, not null, foreign key)
-  * sets (integer, not null)
-  * reps (integer)
-  * duration (integer)
-  * repeats (integer, not null, default false)
-  * created_at (dateTime, not null)
-  * updated_at (dateTime, not null)
 
-## BACKEND ROUTES    
-  ### USERS
-   * log-in user (GET & POST)
-   * sign-up user (GET & POST)
-   * log-out user (POST)
-  ### LISTS
-   * get all lists (GET)
-   * get specific list (GET)
-   * create new list (POST)
-   * update specific list (PUT)
-   * delete a list (DELETE)
-  ### TASKS
-   * get all tasks (GET)
-   * get specific task (GET)
-   * create new task (POST)
-   * update task (PUT)
-   * update task properties (PATCH)
-   * delete task (DELETE)
+# **Database Schema**
+
+## `users`
+
+| Column Name | Data Type | Details               |
+|-------------|-----------|-----------------------|
+| id          | Integer   | Not Null, Primary Key |
+| displayName | String    | Not Null              |
+| email       | String    | Not Null, unique      |
+| hashedPW    | String    | Not Null              |
+| created_at  | dateTime  | Not Null              |
+| update_at   | dataTime  | Not Null              |
+
+* unique: true`
+
+## `questions`
+
+| Column Name | Data Type   | Details               |
+|-------------|-------------|-----------------------|
+| id          | Integer     | Not Null, Primary Key |
+| title       | String(150) | Not Null              |
+| comment     | text        | Not Null              |
+| user_id     | Integer     | Not Null, Foreign Key |
+| created_at  | dateTime    | Not Null              |
+| update_at   | dataTime    | Not Null              |
+
+
+* `user_id` references `users` table
+
+## `answers`
+
+| Column Name  | Data Type | Details               |
+|--------------|-----------|-----------------------|
+| id           | Integer   | Not Null, Primary Key |
+| comment      | text      | Not Null              |
+| questions_id | Integer   | Not Null, Foreign Key |
+| user_id      | Integer   | Not Null, Foreign Key |
+| created_at   | dateTime  | Not Null              |
+| update_at    | dateTime  | Not Null              |
+
+
+* `questions_id` references `questions` table
+* `user_id` references `users` table
 
 ## ENVIORNMENT DEPENDENCIES/INSTALLATION
    * Bcryptjs
