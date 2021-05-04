@@ -14,10 +14,11 @@
     "react-scripts": "4.0.3",
     "react-sticky-el": "^2.0.7",
     "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "sequelize": "^6.6.2"
   },
   "scripts": {
-    "heroku-postbuild": "npm run build --prefix frontend",
+    "heroku-postbuild": "npm run build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
