@@ -76,7 +76,6 @@ export const deleteOneAnswer = (answerObj) => async dispatch => {
         method: 'DELETE',
     });
     const data = await response.json();
-    // console.log('data: ', data.answersId);
     dispatch(deleteAnswer(data));
 }
 

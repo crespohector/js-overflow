@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sequelize": "sequelize",
+    "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "sequelize-cli",
-    "start": "per-env",
+    "start": "npm start --prefix backend",
     "start:development": "nodemon -r dotenv/config ./bin/www",
     "start:production": "node ./bin/www"
   },

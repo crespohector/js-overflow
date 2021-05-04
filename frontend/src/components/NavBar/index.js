@@ -1,5 +1,5 @@
 // frontend/src/components/NavBar/index.js
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -26,20 +26,6 @@ function NavBar({ isLoaded }) {
     const password = "password";
     dispatch(sessionActions.login({ credential, password }))
 }
-
-  // useEffect(() => {
-  //   if (!show) return;
-
-  //   const closeMenu = () => {
-  //     const div = document.getElementById('menu');
-  //     div.classList.toggle('change');
-  //     setShow(false);
-  //   };
-  //   document.addEventListener('click', closeMenu);
-  //   return () => {
-  //     document.removeEventListener("click", closeMenu);
-  //   }
-  // }, [show]);
 
   let sessionLinks;
   if (sessionUser) {
@@ -86,33 +72,4 @@ function NavBar({ isLoaded }) {
   );
 }
 
-
-//-----------------------------------------------------------------------------------
-// function NavBar({ isLoaded }){
-//   const sessionUser = useSelector(state => state.session.user);
-
-//   let sessionLinks;
-//   if (sessionUser) {
-//     sessionLinks = (
-//       <ProfileButton user={sessionUser} />
-//     );
-//   } else {
-//     sessionLinks = (
-//       <>
-//         <NavLink to="/login">Log In</NavLink>
-//         <NavLink to="/signup">Sign Up</NavLink>
-//       </>
-//     );
-//   }
-
-//   return (
-//     <ul>
-//       <li>
-//         <NavLink exact to="/">Home</NavLink>
-//         {isLoaded && sessionLinks}
-//       </li>
-//     </ul>
-//   );
-// }
-//--------------------------------------------------------------------------------------------
 export default NavBar;

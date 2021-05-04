@@ -22,7 +22,6 @@ function ProfilePage() {
     const questions = useSelector(state => state.questions);
     const questionsArr = Object.values(questions).filter(question => question.user_id === parseUserId);
 
-    // console.log("answer: ", answersArr);
 
     function onClickQuestions() {
         setShowQuestions(true);

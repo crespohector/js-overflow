@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addQuestions } from "../../store/questions";
-import NavBar from "../NavBar";
 import "./AskQuestion.css";
 
 
@@ -36,7 +35,7 @@ function AskQuestion() {
 
         setErrors(errors);
 
-    }, [title, comment])
+    }, [title, comment, user])
 
 
     return (

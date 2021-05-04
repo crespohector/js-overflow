@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {getQuestions} from '../../store/questions';
 import Footer from '../Footer';
-import NavBar from "../NavBar";
 import './Questions.css';
 
 function Questions() {

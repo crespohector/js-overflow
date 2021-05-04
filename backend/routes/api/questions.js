@@ -26,7 +26,6 @@ router.get('/:questionId', asyncHandler(async function (req, res) {
 
 
 router.post('/', asyncHandler(async function (req, res) {
-  // console.log("-------Request.body-------: ", req.body);
   const { title, comment, user_id } = req.body;
 
   const question = await Question.create({
@@ -38,7 +37,6 @@ router.post('/', asyncHandler(async function (req, res) {
 }));
 
 router.post('/:questionId', asyncHandler(async function (req, res) {
-  // console.log("-------Request.body-------: ", req.body);
   const {comment, questions_id, user_id} = req.body;
 
   const answer = await Answer.create({

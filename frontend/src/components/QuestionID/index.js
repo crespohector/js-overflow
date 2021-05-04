@@ -8,8 +8,6 @@ import Modal from 'react-modal';
 import { useSelector, useDispatch } from 'react-redux';
 import {  getAnswers, addOneAnswer } from '../../store/answers';
 import { getQuestions } from '../../store/questions';
-// import Footer from '../Footer';
-import NavBar from "../NavBar";
 import './QuestionID.css';
 
 Modal.setAppElement('#root');

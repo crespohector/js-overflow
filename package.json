@@ -1,0 +1,20 @@
+{
+  "name": "js-overflow",
+  "version": "1.0.0",
+  "description": "A clone of stackoverflow.com with a focus on the topics of JavaScript. Users are able to post Q&A's and keep track of it in their profile page. ![js_overflow_splashpage](https://user-images.githubusercontent.com/76798385/116944241-1892eb00-ac43-11eb-8a61-a285b090502e.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crespohector/js-overflow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crespohector/js-overflow/issues"
+  },
+  "homepage": "https://github.com/crespohector/js-overflow#readme"
+}

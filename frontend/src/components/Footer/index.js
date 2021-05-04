@@ -7,7 +7,7 @@ function Footer() {
         <div className="footer-container">
             <div className="profile-container">
                 <div className="profile-container_avatar">
-                    <img className="img-avatar" src="img/AvatarMaker.png" />
+                    <img className="img-avatar" src="img/AvatarMaker.png" alt="avatar" />
                     <p className="name">Hector Crespo</p>
                 </div>
                 <div className="profile-container_icons">
