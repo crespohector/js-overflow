@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sequelize": "npm run sequelize",
+    "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
     "start": "npm start",
     "start:development": "nodemon -r dotenv/config ./bin/www",
