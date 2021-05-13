@@ -5,8 +5,6 @@ import {useParams} from 'react-router-dom';
 import Modal from "react-modal";
 import {updateOneAnswer} from '../../store/answers';
 
-
-
 Modal.setAppElement('#root');
 
 function RenameModalBtn({answer}) {

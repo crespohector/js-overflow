@@ -4,7 +4,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import Modal from 'react-modal';
+import Modal from "react-modal"
 import { useSelector, useDispatch } from 'react-redux';
 import {  getAnswers, addOneAnswer } from '../../store/answers';
 import { getQuestions } from '../../store/questions';
@@ -87,14 +87,5 @@ function QuestionID() {
     </div>
   );
 }
-
-// comment: "I have some JavaScript code that gives this error\n );\n  var i2 = document.getElementById('i2');\n
-// createdAt: "2021-04-27T22:17:20.140Z"
-// id: 1
-// title: "Uncaught TypeError: Cannot read property \"value\" of undefined"
-// updatedAt: "2021-04-27T22:17:20.140Z"
-
-
-
 
 export default QuestionID;

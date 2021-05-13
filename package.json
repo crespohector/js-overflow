@@ -22,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/crespohector/js-overflow/issues"
   },
-  "homepage": "https://github.com/crespohector/js-overflow#readme"
+  "homepage": "https://github.com/crespohector/js-overflow#readme",
+  "dependencies": {}
 }
