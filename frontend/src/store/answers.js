@@ -58,8 +58,6 @@ export const addOneAnswer = (answer) => async dispatch => {
     return response;
 }
 
-
-
 export const updateOneAnswer = (answerObj) => async dispatch => {
     const {comment, answerId, userId} = answerObj;
     const response = await csrfFetch(`/api/users/${userId}/answers/${answerId}`, {
