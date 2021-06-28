@@ -1,16 +1,16 @@
 import "./Footer.css";
+import avatarImg from "../../images/AvatarMaker.png";
 
 function Footer() {
 
-
     return (
-        <div className="footer-container">
+        <footer className="footer-container">
             <div className="profile-container">
-                <div className="profile-container_avatar">
-                    <img className="img-avatar" src="img/AvatarMaker.png" alt="avatar" />
-                    <p className="name">Hector Crespo</p>
+                <div className="block_img">
+                    <img className="img-avatar" src={avatarImg} alt="avatar" />
                 </div>
                 <div className="profile-container_icons">
+                    <span className="name">© Hector Crespo </span>
                     <a className="github-icon" href="https://github.com/crespohector/js-overflow" >
                         <i className="fab fa-github"></i>
                     </a>
@@ -19,9 +19,8 @@ function Footer() {
                     </a>
                 </div>
             </div>
-        </div>
+        </footer>
     );
 }
-
 
 export default Footer;

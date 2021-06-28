@@ -8,7 +8,7 @@ const { environment } = require('./config');
 const routes = require('./routes');
 const { ValidationError } = require('sequelize');   // for the sequelize validation error handler
 
-const isProduction = environment === 'production';  // created to check if the ENVIRONMENT KEY is in production or not.
+const isProduction = environment  ==='production';  // created to check if the ENVIRONMENT KEY is in production or not.
 
 
 const app = express();     // initialize the express app.

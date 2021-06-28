@@ -6,6 +6,8 @@ import ProfileButton from './ProfileButton';
 import * as sessionActions from '../../store/session';
 import './NavBar.css';
 
+import jsLogo from "../../images/js_logo.png";
+
 function NavBar({ isLoaded }) {
   const [show, setShow] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
@@ -60,7 +62,7 @@ function NavBar({ isLoaded }) {
       </div> : null}
 
       <div className="navbar-img-container" onClick={refreshPage}>
-        <img className="js_logo" src='img/js_logo.png' />
+        <img className="js_logo" src={jsLogo} />
         <span className="navbar-img-text">overflow</span>
       </div>
 

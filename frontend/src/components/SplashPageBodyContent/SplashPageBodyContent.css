@@ -1,16 +1,15 @@
 /* main content container */
 .body-content-container {
     display: flex;
-    background-image: url('http://localhost:3000/img/simple_dark_bg.png');
+    background-image: url('../../images/simple_dark_bg.png');
     resize: both;
     background-size: contain;
     background-color: rgb(39, 39, 39);
-    max-width: 2000px;
-    min-height: 800px;
-    /* border: 2px solid red; */
-    margin: 0px 40px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    width: 90%;
+    /* min-height: 800px; */
+    margin: 0px auto;
+    /* margin-top: 30px; */
+    /* margin-bottom: 30px; */
     border-radius: 10px;
 }
 
