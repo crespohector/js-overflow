@@ -2,7 +2,8 @@
 .footer-container {
     display: flex;
     background-color: #dfdfdf;
-    width: 100vw;
+    width: 100%;
+    padding: 10px 0px;
     /* border: 1px solid black; */
 }
 

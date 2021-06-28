@@ -1,5 +1,5 @@
 // frontend/src/components/NavBar/index.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -14,12 +14,8 @@ function NavBar({ isLoaded }) {
   const dispatch = useDispatch();
 
   const changeMenuIcon = (e) => {
-    if (show) {
-      setShow(false);
-    }
-    else {
-      setShow(true);
-    }
+    if (show) return ;
+    setShow(true);
     e.currentTarget.classList.toggle('change');
   }
 
@@ -27,7 +23,7 @@ function NavBar({ isLoaded }) {
     const credential = "Demo-User";
     const password = "password";
     dispatch(sessionActions.login({ credential, password }))
-}
+  }
 
   let sessionLinks;
   if (sessionUser) {
@@ -45,8 +41,21 @@ function NavBar({ isLoaded }) {
   }
 
   function refreshPage() {
-    window.location.reload();
+    window.location.reload(); //redirect back to home
   }
+
+  useEffect(() => {
+    if (!show) return;
+
+    const closeShow = () => {
+      const divMenu = document.querySelector('.navbar-menu');
+      setShow(false);
+      divMenu.classList.toggle('change');
+    }
+
+    document.addEventListener('click', closeShow);
+    return () => document.removeEventListener('click', closeShow);
+  }, [show])
 
   return (
     <div className="navbar-main-container">

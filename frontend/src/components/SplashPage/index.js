@@ -8,8 +8,6 @@ import Footer from "../Footer";
 import Sticky from 'react-sticky-el';
 
 function SplashPage({ isLoaded }) {
-  // const dispatch = useDispatch();
-  // const sessionUser = useSelector(state => state.session.user);
 
   return (
     <div className="body-wrapper">
