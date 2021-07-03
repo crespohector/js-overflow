@@ -1,6 +1,6 @@
 // frontend/src/components/NavBar/index.js
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import * as sessionActions from '../../store/session';
@@ -25,6 +25,7 @@ function NavBar({ isLoaded }) {
     dispatch(sessionActions.login({ credential, password }))
   }
 
+  //if user is logged in then render profile btn; else render login btn, sign up btn
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -40,16 +41,15 @@ function NavBar({ isLoaded }) {
     );
   }
 
-  function refreshPage() {
-    window.location.reload(); //redirect back to home
-  }
-
   useEffect(() => {
     if (!show) return;
 
     const closeShow = () => {
       const divMenu = document.querySelector('.navbar-menu');
       setShow(false);
+      if (divMenu == null) {
+        return ;
+      }
       divMenu.classList.toggle('change');
     }
 
@@ -66,14 +66,14 @@ function NavBar({ isLoaded }) {
       </div>
 
       {show ? <div className="navbar-menu_links">
-        <NavLink className="home" to="/" onClick={refreshPage}>Home</NavLink>
+        <NavLink className="home" to="/" >Home</NavLink>
         <NavLink className="questions" to="/questions">Questions</NavLink>
       </div> : null}
 
-      <div className="navbar-img-container" onClick={refreshPage}>
+      <NavLink className="navbar-img-container" to="/">
         <img className="js_logo" src={jsLogo} />
         <span className="navbar-img-text">overflow</span>
-      </div>
+      </NavLink>
 
       <div className='navbar-user-container'>
         {isLoaded && sessionLinks}

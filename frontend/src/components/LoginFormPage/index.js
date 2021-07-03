@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
+
+import NavBar from '../NavBar/';
 import './LoginForm.css';
 
 function LoginFormPage() {
@@ -27,34 +29,40 @@ function LoginFormPage() {
   }
 
   return (
-    <form className="login_form" onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+    <>
+      <NavBar/>
+      <form className="login_form" onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+        <div>
+          <label>
+            Email
+            <input
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <button type="submit">Log In</button>
+      </form>
       <div>
-        <label>
-          Username or Email
-        <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
+        <span>Don't have an account? <NavLink to="/signup">Sign up</NavLink></span>
       </div>
-      <div>
-        <label>
-          Password
-        <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-      </div>
-      <button type="submit">Log In</button>
-    </form>
+    </>
   );
 }
 
