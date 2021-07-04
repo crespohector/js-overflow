@@ -7,6 +7,8 @@ import App from './App';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 
+import { IsLoadedProvider } from "./Context/isLoadedContext";
+
 
 const store = configureStore();
 
@@ -20,9 +22,11 @@ if (process.env.NODE_ENV !== 'production') {
 function Root() {
   return (
     <ReduxProvider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <IsLoadedProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </IsLoadedProvider>
     </ReduxProvider>
   );
 }
