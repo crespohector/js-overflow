@@ -1,10 +1,8 @@
 // frontend/src/App.js
-import React, { useState, useEffect, useContext } from "react";
-import { useDispatch } from "react-redux";
+import React, { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
-import * as sessionActions from "./store/session";
 //--------------------------------------------------------------
 import NoMatch from './components/NoMatch';
 import SplashPage from './components/SplashPage';
@@ -17,7 +15,6 @@ import {isLoadedContext} from './Context/isLoadedContext';
 
 function App() {
 
-  //returns a boolean
   const isLoaded = useContext(isLoadedContext);
 
   return (
@@ -25,7 +22,7 @@ function App() {
         {isLoaded && (
           <Switch>
             <Route exact path="/">
-              <SplashPage isLoaded={isLoaded} />
+              <SplashPage />
             </Route>
             <Route path="/login">
               <LoginFormPage />

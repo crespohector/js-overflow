@@ -4,6 +4,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
 
+import Footer from '../Footer/';
 import NavBar from '../NavBar/';
 import './LoginForm.css';
 
@@ -30,37 +31,46 @@ function LoginFormPage() {
 
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <form className="login_form" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <div>
-          <label>
+          <label className="login_form-label_email">
             Email
-            <input
-              type="text"
-              value={credential}
-              onChange={(e) => setCredential(e.target.value)}
-              required
-            />
+            <div>
+              <input
+                type="text"
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                className="login_form-input_email"
+                required
+              />
+            </div>
           </label>
         </div>
         <div>
-          <label>
+          <label className="login_form-label_password">
             Password
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="login_form-input_password"
+                required
+              />
+            </div>
           </label>
         </div>
-        <button type="submit">Log In</button>
+        <button className="login_form-btn_submit" type="submit">Log In</button>
       </form>
-      <div>
-        <span>Don't have an account? <NavLink to="/signup">Sign up</NavLink></span>
+      <div className="sign_up_link_container">
+        <span className="sign_up_span" >Don't have an account? <NavLink className="sign_up_link" to="/signup">Sign up</NavLink></span>
+      </div>
+      <div className="login_footer">
+        <Footer />
       </div>
     </>
   );

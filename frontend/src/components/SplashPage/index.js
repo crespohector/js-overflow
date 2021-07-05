@@ -7,15 +7,13 @@ import SplashPageBodyContent from '../SplashPageBodyContent';
 import Footer from "../Footer";
 import Sticky from 'react-sticky-el';
 
-import {useContext} from 'react';
-import {isLoadedContext} from '../../Context/isLoadedContext'
 
-function SplashPage({ isLoaded }) {
+function SplashPage() {
 
   return (
     <div className="body-wrapper">
       <Sticky>
-        <NavBar isLoaded={isLoaded} />
+        <NavBar />
       </Sticky>
       <SplashPageBodyContent />
       <Footer />

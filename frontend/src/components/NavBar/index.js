@@ -1,17 +1,23 @@
 // frontend/src/components/NavBar/index.js
-import React, { useEffect, useState } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import * as sessionActions from '../../store/session';
+import {isLoadedContext} from '../../Context/isLoadedContext';
 import './NavBar.css';
 
 import jsLogo from "../../images/js_logo.png";
 
-function NavBar({ isLoaded }) {
+function NavBar() {
   const [show, setShow] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const contextIsloaded = useContext(isLoadedContext)
+
+  //might need these console.logs later for the questions and profile page
+  // console.log('---session user: ', sessionUser)
+  // console.log('-----is loaded: ', contextIsloaded);
 
   const changeMenuIcon = (e) => {
     if (show) return ;
@@ -76,7 +82,7 @@ function NavBar({ isLoaded }) {
       </NavLink>
 
       <div className='navbar-user-container'>
-        {isLoaded && sessionLinks}
+        {contextIsloaded && sessionLinks}
       </div>
 
     </div>

@@ -9,7 +9,6 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 
 import { IsLoadedProvider } from "./Context/isLoadedContext";
 
-
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {

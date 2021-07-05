@@ -84,10 +84,11 @@
 
 /*NavBar JS Overflow Image */
 .navbar-img-container {
-    /* border: 1px solid black; */
     display:inline-block;
     box-sizing: border-box;
     margin: 5px 3px 0px 8px;
+    text-decoration: none;
+    color: #2e2e2f;
 }
 
 .js_logo {
@@ -104,7 +105,6 @@
 
 .navbar-img-container:hover {
     background-color: rgb(224, 217, 217);
-    cursor: pointer;
 }
 
 /* navbar-user-container */
