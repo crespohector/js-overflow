@@ -53,7 +53,7 @@ function AskQuestion() {
                             ))}
                         </ul>
                         <div className="title-container">
-                            <label className="">
+                            <label className="title-label">
                                 Title
                                 <span className="title-span_text">Be specific and imagine you’re asking a question to another person</span>
                                 <div>
@@ -62,13 +62,14 @@ function AskQuestion() {
                                         value={title}
                                         onChange={e => setTitle(e.target.value)}
                                         placeholder="Enter question here..."
+                                        className="title-question_input"
                                         required
                                     />
                                 </div>
                             </label>
                         </div>
                         <div className="comment-container">
-                            <label className="">
+                            <label className="title-label">
                                 Body
                                 <span className="title-span_text">Include all the information someone would need to answer your question</span>
                                 <div>
@@ -77,16 +78,17 @@ function AskQuestion() {
                                     cols="50"
                                     value={comment} onChange={e => setComment(e.target.value)}
                                     placeholder="Enter comment here..."
+                                    className="title-question_input"
                                     required>
                                     </textarea>
                                 </div>
                             </label>
                         </div>
                     </div>
-                    <button className="submit_btn" type="submit" disabled={errors.length > 0}>Post your question</button>
+                    <button className="submit_btn" type="submit" disabled={errors.length > 0}>Review your question</button>
                 </form>
             </div>
-            <div className="login_footer">
+            <div className="ask_question_footer">
                 <Footer />
             </div>
         </>

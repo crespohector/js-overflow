@@ -45,7 +45,6 @@
     text-shadow: none;
     display: inline-block;
     text-align: start;
-    -webkit-rtl-ordering: logical;
     cursor: text;
     font: 400 13.3333px Arial;
     border-width: 2px;
