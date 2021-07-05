@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { useHistory, NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addQuestions } from "../../store/questions";
+import NavBar from '../NavBar';
+import Footer from '../Footer';
 import "./AskQuestion.css";
 
 
@@ -39,26 +41,55 @@ function AskQuestion() {
 
 
     return (
-        <div className="ask_question_container">
-            <form className="question-form" onSubmit={onSubmit}>
-                <h1>Ask a question! Don't be shy! 😄</h1>
-                <ul className="errors">
-                    {errors.map(error => (
-                        <li key={error}>{error}</li>
-                    ))}
-                </ul>
-                <div className="title-container">
-                    <label htmlFor="title">Title</label>
-                    <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Enter question here..." required />
-                </div>
-                <div className="comment-container">
-                    <label htmlFor="comment">Comment</label>
-                    <textarea rows="10" cols="50" value={comment} onChange={e => setComment(e.target.value)} placeholder="Enter comment here..." required></textarea>
-                </div>
-                <button className="submit_btn" type="submit" disabled={errors.length > 0}>Submit Question</button>
-            </form>
-            <NavLink className="questions_home_link" to="/">Home</NavLink>
-        </div>
+        <>
+            <NavBar />
+            <div className="ask_question_container">
+                <span className="ask_question_title">Ask a public question! Don't be shy! 😄</span>
+                <form onSubmit={onSubmit}>
+                    <div className="question-form">
+                        <ul className="errors">
+                            {errors.map(error => (
+                                <li key={error}>{error}</li>
+                            ))}
+                        </ul>
+                        <div className="title-container">
+                            <label className="">
+                                Title
+                                <span className="title-span_text">Be specific and imagine you’re asking a question to another person</span>
+                                <div>
+                                    <input
+                                        type="text"
+                                        value={title}
+                                        onChange={e => setTitle(e.target.value)}
+                                        placeholder="Enter question here..."
+                                        required
+                                    />
+                                </div>
+                            </label>
+                        </div>
+                        <div className="comment-container">
+                            <label className="">
+                                Body
+                                <span className="title-span_text">Include all the information someone would need to answer your question</span>
+                                <div>
+                                    <textarea
+                                    rows="10"
+                                    cols="50"
+                                    value={comment} onChange={e => setComment(e.target.value)}
+                                    placeholder="Enter comment here..."
+                                    required>
+                                    </textarea>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <button className="submit_btn" type="submit" disabled={errors.length > 0}>Post your question</button>
+                </form>
+            </div>
+            <div className="login_footer">
+                <Footer />
+            </div>
+        </>
     )
 }
 

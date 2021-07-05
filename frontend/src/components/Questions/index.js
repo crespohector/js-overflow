@@ -2,7 +2,9 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {getQuestions} from '../../store/questions';
+import Sticky from 'react-sticky-el';
+import { getQuestions } from '../../store/questions';
+import NavBar from '../NavBar';
 import Footer from '../Footer';
 import './Questions.css';
 
@@ -16,23 +18,26 @@ function Questions() {
   }, [dispatch])
 
   return (
-    <div className="questions-main-container">
-      <div className="questions-head-container">
-        <span className="questions-text">All Questions</span>
-        <NavLink className="questions-home" to="/">Home</NavLink>
-        <NavLink className="ask-question" to="/questions/ask">Ask Question</NavLink>
+    <>
+      <Sticky>
+        <NavBar />
+      </Sticky>
+      <div className="questions-main-container">
+        <div className="questions-head-container">
+          <span className="questions-text">All Questions</span>
+          <NavLink className="ask-question" to="/questions/ask">Ask Question</NavLink>
+        </div>
+        <div className="questions-body-container">
+          {questionsArr.map(question => (
+            <div key={question.id} className="post-question">
+              <NavLink className="post-question_navlink" to={`/questions/${question.id}`}>{question.title}</NavLink>
+              <p className="post-question_comment">{question.comment}</p>
+            </div>
+          ))}
+        </div>
+        <Footer />
       </div>
-      <div className="questions-body-container">
-        {questionsArr.map(question => (
-          <div key={question.id} className="post-question">
-            <h3>Question</h3>
-            <NavLink className="post-question_navlink" to={`/questions/${question.id}`}>{question.title}</NavLink>
-            <p className="post-question_comment">{question.comment}</p>
-          </div>
-        ))}
-      </div>
-      <Footer />
-    </div>
+    </>
   );
 }
 

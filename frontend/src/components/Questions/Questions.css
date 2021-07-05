@@ -1,26 +1,26 @@
 /* Questions Main container */
 .questions-main-container {
     max-width: 1000px;
-    min-height: 1000px;
-    /* border: 1px solid black; */
-    margin: auto;
+    margin: 0px auto;
+    /* margin-top: 2%; */
     background-color: whitesmoke;
-    border: 1px solid rgb(172, 172, 172);
+    border: 1px solid rgb(228, 225, 225);
+    border-top: none;
     border-radius: 6px;
+    padding: 30px 0px 0px 0px;
 }
 
 
 /* Questions Head container */
 .questions-head-container {
-    /* border: 1px solid red; */
     display: flex;
     justify-content: space-around;
-    border-bottom: 2px solid rgb(212, 210, 210);
+    padding: 0px 0px 10px 0px;
+    border-bottom: 2px solid rgb(228, 225, 225);
 }
 
-/*  Questions Text  */
+/*  Questions header Text  */
 .questions-text {
-    /* border: 1px solid black; */
     font-size: 2em;
     font-weight: 500;
     font-family: Arial, Helvetica, sans-serif;
@@ -28,23 +28,7 @@
     margin: 5px 0px;
 }
 
-/*  Questions Home Btn  */
-.questions-home {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    border: 1px solid #0095ff;
-    background-color: #0095ff;
-    border-radius: 3px;
-    display: inline-block;
-    font-size: 1em;
-    text-align: center;
-    cursor: pointer;
-    padding: .6em;
-    margin: 5px 40px 5px 0px;
-    box-sizing: border-box;
-}
-
-/*  ask-question  */
+/*  ask-question btn  */
 .ask-question {
     text-decoration: none;
     color: rgb(255, 255, 255);
@@ -63,8 +47,29 @@
 
 /*  Questions Body container  */
 .questions-body-container {
-    /* border: 1px solid blue; */
-    margin-top: 20px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    padding: 1px 5px;
+    padding: 20px 25px;
+}
+
+
+/* Post question */
+.post-question {
+    border-bottom: 1px solid rgb(228, 225, 225);
+    padding: 10px 0px;
+}
+
+.post-question:last-child {
+    border-bottom: none;
+}
+
+.post-question_navlink {
+    text-decoration: none;
+    color: #0077cc;
+    font-size: 1.3em;
+    line-height: 1.3;
+    font-weight: 400;
+}
+
+.post-question_comment {
+    line-height: 1.5;
 }

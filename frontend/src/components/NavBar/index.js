@@ -54,8 +54,10 @@ function NavBar() {
       const divMenu = document.querySelector('.navbar-menu');
       setShow(false);
       if (divMenu == null) {
+        console.log('hit that means divmenu is null')
         return ;
       }
+      console.log('hit', divMenu)
       divMenu.classList.toggle('change');
     }
 

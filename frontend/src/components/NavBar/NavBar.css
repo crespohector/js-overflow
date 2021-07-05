@@ -157,6 +157,7 @@
 
 /*----------------------- Profile button----------------------- */
 .menu_btn {
+    position: relative;
     border: 1px solid blue;
     color: rgb(255, 255, 255);
     border: 1px solid #0095ff;
@@ -177,9 +178,15 @@
 
 
 .profile-dropdown {
-    /* border: 1px solid red; */
-    background-color: white;
-    /* list-style: none; */
+    position: absolute;
+    background-color: whitesmoke;
+    list-style: none;
+    padding: 10px 20px;
+    top: 35px;
+}
+
+.profile-dropdown li {
+    margin: 0px 0px 5px 0px;
 }
 
 
@@ -215,7 +222,6 @@
     text-align: center;
     padding: .3em;
     box-sizing: border-box;
-    /* cursor: default; */
     cursor: default;
 }
 .my_profile_btn:hover {
