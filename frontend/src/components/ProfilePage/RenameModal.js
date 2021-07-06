@@ -38,12 +38,12 @@ function RenameModalBtn({answer}) {
             <Modal className="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                 <h1>Made a mistake? ❌</h1>
                 <h2>Don't worry, you can edit your answer!</h2>
-                <ul className="answer_errors">
+                <ul className="errors">
                     {errors.map(error => (
                         <li key={error}>{error}</li>
                     ))}
                 </ul>
-                <form onSubmit={onSubmit}>
+                <form className="answer_form" onSubmit={onSubmit}>
                     <label htmlFor="comment">Comment</label>
                     <textarea rows="10" value={comment} onChange={e => setComment(e.target.value)} placeholder="Enter comment here..." required></textarea>
                     <button onClick={() => setModalIsOpen(false)}>close</button>

@@ -54,15 +54,15 @@ function QuestionID() {
       <div className="QuestionID-main-container">
         <div className="QuestionID-head-container">
           {question ? <div className="title-question">{question.title}</div> : null}
-          <Modal className="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+          <Modal className="answer_modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <h1>Feeling Smart! 🤔</h1>
             <h2>Well put that brain to good use and post an answer!</h2>
-            <ul className="answer_errors">
+            <ul className="errors">
               {errors.map(error => (
                 <li key={error}>{error}</li>
               ))}
             </ul>
-            <form onSubmit={onSubmit}>
+            <form className="answer_form" onSubmit={onSubmit}>
               <label htmlFor="comment">Comment</label>
               <textarea rows="10" value={comment} onChange={e => setComment(e.target.value)} placeholder="Enter comment here..." required></textarea>
               <button onClick={() => setModalIsOpen(false)}>close</button>

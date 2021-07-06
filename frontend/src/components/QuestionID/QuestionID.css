@@ -77,7 +77,11 @@
 
 
 /* the answer modal */
-.modal {
+.answer_modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     position: absolute;
     top: 40px;
     left: 40px;
@@ -91,4 +95,23 @@
     padding: 20px;
     margin: 5% auto; /* 15% from the top and centered */
     width: 40%;
+}
+
+
+.answer_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+}
+
+.answer_form label {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 10px 0px;
+}
+
+.answer_form textarea {
+    width: 80%;
 }

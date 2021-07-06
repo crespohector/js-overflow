@@ -1,10 +1,11 @@
-
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAnswersByUser } from '../../store/answers';
 import { getQuestionsByUser } from '../../store/questions';
 
+import NavBar from '../NavBar';
+import Footer from '../Footer';
 import RenameModalBtn from "./RenameModal";
 import DeleteModalBtn from './DeleteModal';
 
@@ -38,30 +39,32 @@ function ProfilePage() {
     }, [dispatch])
 
     return (
-        <div className="profile_container">
-            <div className="profile_container-header">
-                <h1>Welcome {user.displayName}!</h1>
-                <button onClick={onClickQuestions} className="header-questions_btn">My Questions</button>
-                <button onClick={onClickAnswers} className="header-questions_btn">My Answers</button>
+        <>
+            <NavBar />
+            <div className="profile_container">
+                <div className="profile_container-header">
+                    <div className="profile-header_text">Welcome {user.displayName}!</div>
+                    <button onClick={onClickQuestions} className="header-questions_btn">My Questions</button>
+                    <button onClick={onClickAnswers} className="header-questions_btn">My Answers</button>
+                </div>
+                <div className="profile_container-body">
+                    {showAnswers && answersArr.map(answer => (
+                        <div className="profile_content" key={answer.id}>
+                            <RenameModalBtn answer={answer} />
+                            <DeleteModalBtn answer={answer} />
+                            <p>{answer.comment}</p>
+                        </div>
+                    ))}
+                    {showQuestions && questionsArr.map(question => (
+                        <div className="profile_content" key={question.id}>
+                            <span className="profile_question_title">{question.title}</span>
+                            <p>{question.comment}</p>
+                        </div>
+                    ))}
+                <Footer />
+                </div>
             </div>
-            <div className="profile_container-body">
-                {showAnswers && answersArr.map(answer => (
-                    <div key={answer.id}>
-                        <h3>Answer</h3>
-                        <RenameModalBtn answer={answer} />
-                        <DeleteModalBtn answer={answer} />
-                        <p>{answer.comment}</p>
-                    </div>
-                ))}
-                {showQuestions && questionsArr.map(question => (
-                    <div className="question" key={question.id}>
-                        <h3>Question</h3>
-                        <p>{question.title}</p>
-                        <p>{question.comment}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
+        </>
     )
 }
 
