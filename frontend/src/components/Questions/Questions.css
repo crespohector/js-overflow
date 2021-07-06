@@ -2,7 +2,6 @@
 .questions-main-container {
     max-width: 1000px;
     margin: 0px auto;
-    /* margin-top: 2%; */
     background-color: whitesmoke;
     border: 1px solid rgb(228, 225, 225);
     border-top: none;
@@ -56,6 +55,8 @@
 .post-question {
     border-bottom: 1px solid rgb(228, 225, 225);
     padding: 10px 0px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
 }
 
 .post-question:last-child {

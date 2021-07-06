@@ -1,83 +1,66 @@
 /* Questions Main container */
 .QuestionID-main-container {
     max-width: 1000px;
-    min-height: 1000px;
-    /* border: 1px solid black; */
-    margin: auto;
+    margin: 0px auto;
     background-color: whitesmoke;
-    border: 1px solid rgb(172, 172, 172);
+    border: 1px solid rgb(228, 225, 225);
+    border-top: none;
     border-radius: 6px;
+    padding: 30px 0px 0px 0px;
 }
 
 
 /* QuestionID Head container */
 .QuestionID-head-container {
-    /* border: 1px solid red; */
-    display: flex;
-    justify-content: space-around;
-    border-bottom: 2px solid rgb(212, 210, 210);
+    padding: 0px 5px 10px 5px;
+    border-bottom: 2px solid rgb(228, 225, 225);
 }
 
-/*  QuestionID Text  */
-.QuestionID-text {
-    /* border: 1px solid black; */
-    font-size: 2em;
-    font-weight: 500;
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
+/*  title text question  */
+.title-question {
+    font-weight: 400;
     margin: 5px 0px;
-}
-
-/*  QuestionID Home Btn  */
-.QuestionID-home {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    border: 1px solid #0095ff;
-    background-color: #0095ff;
-    border-radius: 3px;
-    display: inline-block;
-    font-size: 1em;
-    text-align: center;
-    cursor: pointer;
-    padding: .6em;
-    margin: 5px 40px 5px 0px;
+    font-size: 1.5em;
     box-sizing: border-box;
+    overflow-wrap: break-word;
 }
 
-/*  ask-question  */
-.ask-question {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    border: 1px solid #0095ff;
-    background-color: #0095ff;
-    border-radius: 3px;
-    display: inline-block;
-    font-size: 1em;
+/* ask a question container */
+.ask-question-container {
     text-align: center;
-    cursor: pointer;
-    padding: .6em;
-    margin: 5px 0px;
-    box-sizing: border-box;
+    margin: 15px 0px;
 }
-
 
 /*  QuestionID Body container  */
 .QuestionID-body-container {
-    /* border: 1px solid blue; */
-    margin-top: 20px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    padding: 1px 5px;
-}
-
-.title-question {
-    border-bottom: 1px solid black;
-    font-size: 1.1em;
-    font-weight: 600;
+    padding: 0px 25px;
 }
 
 .comment-question {
-    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    margin: 20px 0px;
+}
 
+.all_answers_text {
+    font-size: 1.4em;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    padding: 10px 0px;
+    border-top:1px solid rgb(228, 225, 225);
+}
+
+.no_answers_text {
+    font-size: 1.4em;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    padding: 30px 0px;
+    border-top:1px solid rgb(228, 225, 225);
+    text-align: center;
 }
 
 .modal {
