@@ -1,6 +1,6 @@
 // frontend/src/components/NavBar/index.js
 import React, { useEffect, useState, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import * as sessionActions from '../../store/session';
@@ -10,6 +10,8 @@ import './NavBar.css';
 import jsLogo from "../../images/js_logo.png";
 
 function NavBar() {
+  let history = useHistory();
+  const [search, setSearch] = useState('');
   const [show, setShow] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
@@ -47,6 +49,14 @@ function NavBar() {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
+
+  const submitSearch = () => {
+    if (search) {
+      history.push('/questions');
+    }
+    setSearch('');
+    return ;
+  }
 
   useEffect(() => {
     if (!show) return;
@@ -90,6 +100,11 @@ function NavBar() {
         <img className="js_logo" src={jsLogo} />
         <span className="navbar-img-text">overflow</span>
       </NavLink>
+
+      <div className="navbar-search_container">
+          <input className="navbar-search_input" type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search.."/>
+          <button className="navbar-search_btn" type="button" onClick={submitSearch} ><i className="fas fa-search"></i></button>
+      </div>
 
       <div className='navbar-user-container'>
         {contextIsloaded && sessionLinks}
