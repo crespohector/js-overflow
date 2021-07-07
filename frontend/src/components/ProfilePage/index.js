@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import { getAnswersByUser } from '../../store/answers';
 import { getQuestionsByUser } from '../../store/questions';
 
@@ -23,6 +23,7 @@ function ProfilePage() {
     const questions = useSelector(state => state.questions);
     const questionsArr = Object.values(questions).filter(question => question.user_id === parseUserId);
 
+    const sessionUser = useSelector(state => state.session.user);
 
     function onClickQuestions() {
         setShowQuestions(true);
@@ -37,6 +38,10 @@ function ProfilePage() {
         dispatch(getAnswersByUser(parseUserId));
         dispatch(getQuestionsByUser(parseUserId));
     }, [dispatch])
+
+    if (!sessionUser) return (
+        <Redirect to="/" />
+    );
 
     return (
         <>
@@ -61,7 +66,7 @@ function ProfilePage() {
                             <p>{question.comment}</p>
                         </div>
                     ))}
-                <Footer />
+                    <Footer />
                 </div>
             </div>
         </>

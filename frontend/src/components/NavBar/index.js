@@ -15,10 +15,6 @@ function NavBar() {
   const dispatch = useDispatch();
   const contextIsloaded = useContext(isLoadedContext)
 
-  //might need these console.logs later for the questions and profile page
-  // console.log('---session user: ', sessionUser)
-  // console.log('-----is loaded: ', contextIsloaded);
-
   const changeMenuIcon = (e) => {
     if (show) return ;
     setShow(true);
@@ -54,10 +50,9 @@ function NavBar() {
       const divMenu = document.querySelector('.navbar-menu');
       setShow(false);
       if (divMenu == null) {
-        console.log('hit that means divmenu is null')
+        //if div is null then return nothing to avoid error
         return ;
       }
-      console.log('hit', divMenu)
       divMenu.classList.toggle('change');
     }
 
