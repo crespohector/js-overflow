@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import * as sessionActions from '../../store/session';
-import {isLoadedContext} from '../../Context/isLoadedContext';
+import { isLoadedContext } from '../../Context/isLoadedContext';
 import './NavBar.css';
 
 import jsLogo from "../../images/js_logo.png";
@@ -16,7 +16,7 @@ function NavBar() {
   const contextIsloaded = useContext(isLoadedContext)
 
   const changeMenuIcon = (e) => {
-    if (show) return ;
+    if (show) return;
     setShow(true);
     e.currentTarget.classList.toggle('change');
   }
@@ -43,6 +43,11 @@ function NavBar() {
     );
   }
 
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+  };
+
   useEffect(() => {
     if (!show) return;
 
@@ -51,7 +56,7 @@ function NavBar() {
       setShow(false);
       if (divMenu == null) {
         //if div is null then return nothing to avoid error
-        return ;
+        return;
       }
       divMenu.classList.toggle('change');
     }
@@ -71,6 +76,14 @@ function NavBar() {
       {show ? <div className="navbar-menu_links">
         <NavLink className="home" to="/" >Home</NavLink>
         <NavLink className="questions" to="/questions">Questions</NavLink>
+        <div className="user-container">
+          {!sessionUser ? sessionLinks :
+            <>
+              <button onClick={logout}>Log Out</button>
+              <NavLink className="my_profile_btn" to={`/users/${sessionUser.id}`}>My Profile</NavLink>
+            </>
+          }
+        </div>
       </div> : null}
 
       <NavLink className="navbar-img-container" to="/">
