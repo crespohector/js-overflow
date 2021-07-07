@@ -52,7 +52,7 @@ function NavBar() {
 
   const submitSearch = () => {
     if (search) {
-      history.push('/questions');
+      history.push(`/search/${search}`);
     }
     setSearch('');
     return ;

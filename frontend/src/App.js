@@ -10,6 +10,7 @@ import Questions from './components/Questions';
 import QuestionID from './components/QuestionID';
 import AskQuestion from "./components/AskQuestion";
 import ProfilePage from "./components/ProfilePage";
+import SearchQuestion from './components/SearchQuestion';
 
 import {isLoadedContext} from './Context/isLoadedContext';
 
@@ -41,6 +42,9 @@ function App() {
             </Route>
             <Route exact path="/users/:userId">
               <ProfilePage />
+            </Route>
+            <Route exact path="/search/:query">
+              <SearchQuestion />
             </Route>
             <Route>
               <NoMatch />
