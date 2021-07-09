@@ -9,10 +9,11 @@ import Footer from '../Footer';
 
 function SearchQuestion() {
     const {query} = useParams();
-    const splitQuery = query.split(' ');
+    // const splitQuery = query.split(' ');
+    const trimmedStr = query.trim();
 
     // console.log('original query: ', query);
-    // console.log('-----trimmed search input from user: ', query.trim())
+    // console.log('-----trimmed search input from user: ', trimmedStr)
     // console.log('split query: ', splitQuery)
 
     const dispatch = useDispatch();
@@ -20,14 +21,20 @@ function SearchQuestion() {
     const questionsArr = Object.values(questions);
 
     const filteredArr = questionsArr.filter(question => {
-        for (let i = 0; i < splitQuery.length; i++) {
-            return question.title.toLowerCase().includes(splitQuery[i].toLowerCase())
-        }
+        console.log('---question title: ', question.title.toLowerCase())
+        console.log('---TRIMMED STRING: ', trimmedStr.toLowerCase())
+
+        console.log('---inside filtered arr: ', question.title.toLowerCase().includes(trimmedStr.toLowerCase()))
+
+        return question.title.toLowerCase().includes(trimmedStr.toLowerCase());
+
+        // for (let i = 0; i < splitQuery.length; i++) {
+        //     return question.title.toLowerCase().includes(splitQuery[i].toLowerCase())
+        // }
     })
 
     const countResults = filteredArr.length;
 
-    // console.log('filtered array: ', filteredArr)
 
     useEffect(() => {
         dispatch(getQuestions());

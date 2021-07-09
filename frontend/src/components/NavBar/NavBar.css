@@ -222,7 +222,8 @@
     background-color: whitesmoke;
     list-style: none;
     padding: 10px 20px;
-    top: 35px;
+    top: 33px;
+    right: 0px;
 }
 
 .profile-dropdown li {
