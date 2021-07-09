@@ -24,7 +24,7 @@ A clone of stackoverflow.com with a focus on the topics of JavaScript. Users are
   * Javascript
   * Express
   * Sequelize
-  * PSQL Database
+  * PostgreSQL
   * CSS
   * HTML
   
