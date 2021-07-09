@@ -275,13 +275,13 @@
     flex-direction: column;
 }
 
-@media screen and (max-width: 482px) {
+@media screen and (max-width: 580px) {
     .navbar-user-container {
         display: none;
     }
 }
 
-@media screen and (min-width: 483px) {
+@media screen and (min-width: 581px) {
     .user-container {
         display: none;
     }
