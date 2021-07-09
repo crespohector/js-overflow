@@ -12,9 +12,9 @@ A clone of stackoverflow.com with a focus on the topics of JavaScript. Users are
   * Logged in users can create questions.
   * Logged in users can answer a question.
   * Logged in users can edit and delete their own answers.
+  * Guest and logged in users can search for specific questions.
 
 ## BONUS / STRETCH GOALS
-  * Guest and logged in users can search for specific questions.
   * Logged in users can upvote/downvote an answer.
   * Logged in and guest users have access to question categories.
   * Logged in users have the ability to post code snippets.
