@@ -27,6 +27,7 @@ function NavBar() {
     const credential = "Demo-User";
     const password = "password";
     dispatch(sessionActions.login({ credential, password }))
+    history.push(`/questions`);
   }
 
   //if user is logged in then render profile btn; else render login btn, sign up btn
@@ -70,10 +71,10 @@ function NavBar() {
       }
       divMenu.classList.toggle('change');
     }
-
     document.addEventListener('click', closeShow);
     return () => document.removeEventListener('click', closeShow);
   }, [show])
+
 
   return (
     <div className="navbar-main-container">
