@@ -1,5 +1,5 @@
 # Welcome to JS Overflow!
-## Live Link: https://jsoverflow.herokuapp.com/
+## Live Link: https://js-overflow.onrender.com/
 A clone of stackoverflow.com with a focus on the topics of JavaScript. Users are able to post Q&A's and keep track of it in their profile page.
 
 ![Jsoverflowsplashpage](https://user-images.githubusercontent.com/76798385/160947802-87b79a71-207f-4263-97b1-1619b0f40f06.png)
