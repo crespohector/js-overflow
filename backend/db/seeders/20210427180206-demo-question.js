@@ -1,8 +1,14 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Questions', [
+    options.tableName = 'Questions';
+    return queryInterface.bulkInsert(options, [
       //1
       {
         title: 'Uncaught TypeError: Cannot read property "value" of undefined',
@@ -159,7 +165,8 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Questions', null, {});
+    options.tableName = 'Questions';
+    return queryInterface.bulkDelete(options, null, {});
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

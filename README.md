@@ -8,7 +8,7 @@ A clone of stackoverflow.com with a focus on the topics of JavaScript. Users are
 ## MVP
   * Users can create an account, log in, and log out.
   * Users can use a demo log in to try the site.
-  * Logged out users are directed to the home page.  
+  * Logged out users are directed to the home page.
   * Logged in users can create questions.
   * Logged in users can answer a question.
   * Logged in users can edit and delete their own answers.
@@ -18,7 +18,7 @@ A clone of stackoverflow.com with a focus on the topics of JavaScript. Users are
   * Logged in users can upvote/downvote an answer.
   * Logged in and guest users have access to question categories.
   * Logged in users have the ability to post code snippets.
-  
+
 ## TECHNOLOGIES USED
   * React-Redux
   * Javascript
@@ -27,14 +27,14 @@ A clone of stackoverflow.com with a focus on the topics of JavaScript. Users are
   * PostgreSQL
   * CSS
   * HTML
-  
+
 ## DATABASE SCHEMA
 
 ![js_overflow_db_img](https://user-images.githubusercontent.com/76798385/116945443-a079f480-ac45-11eb-9f3a-03b7a6017fdd.png)
 
 ## Technical Showcase
 
-This is the questions state in the Redux store where we use thunk actions to fetch to the API. Then, dispatching an action and updating the store using the questions reducer. 
+This is the questions state in the Redux store where we use thunk actions to fetch to the API. Then, dispatching an action and updating the store using the questions reducer.
 ```javascript
 import { csrfFetch } from './csrf';
 
@@ -101,8 +101,8 @@ export default questionsReducer;
 
 ```
 
-When the user lands on the '/questions' route, it will render all the questions by dispatching a thunk action then use the useSelector to grab all 
-the questions from the redux store. 
+When the user lands on the '/questions' route, it will render all the questions by dispatching a thunk action then use the useSelector to grab all
+the questions from the redux store.
 ```javascript
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -252,3 +252,56 @@ Simple, clean, and modern styling features such as subtle color changes, hover e
    * Express validators
    * Heroku
 
+## Run This Project Locally
+
+### Backend
+1. Run `npm install` in the /backend directory.
+2. Create a `.env` file in the /backend directory to define the environment variables. Follow the example below.
+```
+PORT=5000
+DB_USERNAME=«database user here»
+DB_PASSWORD=«auth_app user password»
+DB_DATABASE=«database name here»
+DB_HOST=localhost
+JWT_SECRET=«generate_strong_secret_here»
+JWT_EXPIRES_IN=604800
+```
+3. Run `openssl rand -base64 10` to generate a random JWT secret.
+4. Create a user using the same creddentials in the `.env` file.
+```
+psql -c "CREATE USER <username> PASSWORD '<password>' CREATEDB"
+```
+5. Create the database.
+```
+npx dotenv sequelize db:create
+```
+6. Generate a migration and model file *(This is already created)*.
+```
+npx sequelize model:generate --name User --attributes username:string,email:string,hashedPassword:string
+```
+7. Migrate the all the models.
+```
+npx dotenv sequelize db:migrate
+```
+8. If there is no error in migrating but you want to change the migration file,
+remember to undo the migration first, change the file, then migrate again.
+```
+npx dotenv sequelize db:migrate:undo
+```
+9. Run this to generate a user seeder file. *(Already created)*
+```
+npx sequelize seed:generate --name demo-user
+```
+10. Migrate the seed file.
+```
+npx dotenv sequelize db:seed:all
+```
+11. Command to undo the seed migration files.
+```
+npx dotenv sequelize db:seed:undo:all
+```
+12. Run `npm start` in the /backend directory to start up the express server.
+
+### Frontend
+1. Run `npm install` in the /frontend directory.
+2. Run `npm start` in the /frontend directory to start up the react server.
